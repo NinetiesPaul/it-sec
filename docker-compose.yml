@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  php:
+    container_name: itsec
+    build: .
+    ports:
+     - "8015:80"
+     - "443:443"
+    volumes:
+     - ./:/var/www/html
+    links:
+     - mysql
+
+  mysql:
+    container_name: itsec_db
+    image: mysql:5.7
+    ports:
+      - "33060:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+     - MYSQL_PASSWORD=root
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_DATABASE=itsec
+
+volumes:
+  dbdata:
