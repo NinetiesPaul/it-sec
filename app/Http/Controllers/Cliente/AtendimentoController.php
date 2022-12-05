@@ -28,12 +28,12 @@ class AtendimentoController extends Controller
     public function show($clienteId, $atendimentoId)
     {
         $atendimento = AtendimentoServices::getOne($atendimentoId, $clienteId);
-        return view('cliente.expand_help', [ 'atendimento' => $atendimento ]);
+        return view('cliente.request', [ 'atendimento' => $atendimento ]);
     }
 
     public function store($clienteId, Request $request)
     {
-        $clienteId = 2;
+        $clienteId = 1;
         $atendimentoId = AtendimentoServices::store($clienteId, $request);
         return redirect('cliente/' . $clienteId . '/atendimento/' . $atendimentoId);
     }

@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\ArmaController;
 use App\Http\Controllers\Admin\AtendimentoController;
 use App\Http\Controllers\Admin\ClienteController;
 use App\Http\Controllers\Admin\VeiculoController;
+use App\Http\Controllers\Cliente\ClienteController as Cliente;
+use App\Http\Controllers\Cliente\AtendimentoController as AtendimentoCliente;
 use App\Http\Controllers\Controller;
 
 /*
@@ -64,7 +66,8 @@ Route::get('/admin/atendimentos', [ AtendimentoController::class, 'index' ]);
 Route::get('/admin/atendimento/{atendimentoId}', [ AtendimentoController::class, 'show' ]);
 Route::get('/admin/atendimentos/contar', [ AtendimentoController::class, 'counter' ]);
 
-Route::get('/cliente', 'Cliente\ClienteController@index');
-Route::get('/cliente/atendimento', 'Cliente\ClienteController@help');
-Route::post('/cliente/{clienteId}/atendimento', 'Cliente\AtendimentoController@store');
-Route::get('/cliente/{clienteId}/atendimento/{atendimentoId}', 'Cliente\AtendimentoController@show');
+Route::get('/cliente', [ Cliente::class, 'index' ]);
+Route::get('/atendimento', [ Cliente::class, 'help' ]);
+Route::get('/atendimentos', [ Cliente::class, 'requests' ]);
+Route::post('/cliente/{clienteId}/atendimento', [ AtendimentoCliente::class, 'store' ]);
+Route::get('/cliente/{clienteId}/atendimento/{atendimentoId}', [ AtendimentoCliente::class, 'show' ]);
