@@ -20,6 +20,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone1',
+        'phone2',
+        'profile_picture',
+        'address_id',
     ];
 
     /**
@@ -40,4 +44,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin() {
+        return $this->hasOne(Admin::class, 'user_id');
+    }
+
+    public function isAgent() {
+        return $this->hasOne(Agent::class, 'user_id');
+    }
 }

@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Endereco extends Model
 {
-    protected $table = 'endereco';
+    protected $table = 'address';
 
     protected $fillable = [
-        'rua',
-        'numero',
-        'bairro',
-        'cep',
-        'cidade',
-        'complemento',
-        'estado_id',
+        'street',
+        'number',
+        'detail1',
+        'zip',
+        'city',
+        'detail2',
+        'state_id',
     ];
 
     public $timestamps = false;

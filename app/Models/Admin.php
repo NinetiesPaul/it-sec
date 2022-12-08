@@ -6,14 +6,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Agente extends Model
+class Admin extends Model
 {
-    protected $table = 'agente';
+    protected $table = 'admin';
 
     protected $fillable = [
-        'usuario_id',
-        'contratado_em',
-        'demitido_em',
+        'user_id',
     ];
 
     public $timestamps = false;

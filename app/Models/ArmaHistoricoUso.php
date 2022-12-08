@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArmaHistoricoUso extends Model
 {
-    protected $table = 'arma_historico_uso';
+    protected $table = 'equipment_history';
 
     protected $fillable = [
         'id',
-        'arma_id',
-        'agente_id',
-        'inicio_de_uso',
-        'fim_de_uso',
+        'equipment_id',
+        'agent_id',
+        'started_on',
+        'ended_on',
     ];
 
     public $timestamps = false;

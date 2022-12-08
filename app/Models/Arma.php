@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Arma extends Model
 {
-    protected $table = 'arma';
+    protected $table = 'equipment';
 
     protected $fillable = [
-        'tipo',
-        'fabricante',
-        'modelo',
-        'n_serie',
-        'observacoes',
+        'type',
+        'make',
+        'model',
+        'sn',
+        'notes',
+        'is_available'
     ];
 
     public $timestamps = false;

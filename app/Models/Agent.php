@@ -6,13 +6,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Estado extends Model
+class Agent extends Model
 {
-    protected $table = 'state';
+    protected $table = 'agent';
 
     protected $fillable = [
-        'name',
-        'attribute',
+        'user_id',
+        'admitted_in',
+        'terminated_at',
     ];
 
     public $timestamps = false;

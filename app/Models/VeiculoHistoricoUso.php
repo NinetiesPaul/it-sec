@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class VeiculoHistoricoUso extends Model
 {
-    protected $table = 'veiculo_historico_uso';
+    protected $table = 'vehicle_usage_history';
 
     protected $fillable = [
         'id',
-        'veiculo_id',
-        'agente_id',
-        'inicio_de_uso',
-        'fim_de_uso',
+        'vehicle_id',
+        'agent_id',
+        'started_on',
+        'ended_on',
     ];
 
     public $timestamps = false;

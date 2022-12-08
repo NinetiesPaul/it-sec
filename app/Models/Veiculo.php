@@ -8,16 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Veiculo extends Model
 {
-    protected $table = 'veiculo';
+    protected $table = 'vehicle';
 
     protected $fillable = [
-        'tipo',
-        'modelo',
-        'fabricante',
-        'ano',
-        'renavam',
-        'cor',
-        'placa',
+        'type',
+        'make',
+        'model',
+        'year',
+        'register',
+        'color',
+        'license',
+        'is_available',
     ];
 
     public $timestamps = false;

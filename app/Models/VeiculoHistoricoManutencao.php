@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class VeiculoHistoricoManutencao extends Model
 {
-    protected $table = 'veiculo_historico_manutencao';
+    protected $table = 'vehicle_maintenance_history';
 
     protected $fillable = [
         'id',
-        'veiculo_id',
-        'inicio_de_manutencao',
-        'fim_de_manutencao',
-        'local',
-        'valor',
-        'descricao',
+        'vehicle_id',
+        'started_on',
+        'ended_on',
+        'location',
+        'cost',
+        'description',
     ];
 
     public $timestamps = false;
