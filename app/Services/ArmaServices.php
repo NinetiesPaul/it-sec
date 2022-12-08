@@ -27,12 +27,12 @@ class ArmaServices
     public static function store(Request $request)
     {
         Arma::create([
-            'tipo' => $request->input('tipo'),
-            'fabricante' => $request->input('fabricante'),
-            'modelo' => $request->input('modelo'),
-            'n_serie' => $request->input('n_serie'),
-            'observacoes' => $request->input('observacoes'),
-            'disponibilidade' => 1,
+            'type' => $request->input('type'),
+            'make' => $request->input('make'),
+            'model' => $request->input('model'),
+            'sn' => $request->input('sn'),
+            'notes' => $request->input('notes'),
+            'is_available' => 1,
         ]);
     }
 
@@ -40,48 +40,48 @@ class ArmaServices
     {
         Arma::where('id', $armaId)
             ->update([
-                'tipo' => $request->input('tipo'),
-                'fabricante' => $request->input('fabricante'),
-                'modelo' => $request->input('modelo'),
-                'n_serie' => $request->input('n_serie'),
-                'observacoes' => $request->input('observacoes'),
+                'type' => $request->input('type'),
+                'make' => $request->input('make'),
+                'model' => $request->input('model'),
+                'sn' => $request->input('sn'),
+                'notes' => $request->input('notes'),
             ]);
     }
 
     public static function usageHistory($armaId)
     {
-        return ArmaHistoricoUso::select(['arma_historico_uso.*','usuario.nome','usuario.id as usuario_id'])
-            ->join('agente', 'agente.id', 'arma_historico_uso.agente_id')
-            ->join('usuario', 'usuario.id', 'agente.usuario_id')
-            ->where('arma_id', $armaId)
+        return ArmaHistoricoUso::select(['equipment_history.*','users.name','users.id as user_id'])
+            ->join('agent', 'agent.id', 'equipment_history.agent_id')
+            ->join('users', 'users.id', 'agent.user_id')
+            ->where('equipment_id', $armaId)
             ->orderBy('id', 'desc')
             ->paginate(5);
     }
 
     public static function setUsage($armaId, Request $request)
     {
-        $armaHistorico = ArmaHistoricoUso::where('arma_id', $armaId)
-            ->whereNull('fim_de_uso')
+        $armaHistorico = ArmaHistoricoUso::where('equipment_id', $armaId)
+            ->whereNull('ended_on')
             ->first();
 
         if ($armaHistorico) {
-            if ($armaHistorico->agente_id === (int) $request->input('agente_id')) {
+            if ($armaHistorico->agent_id === (int) $request->input('agente_id')) {
                 return null;
             }
 
-            $armaHistorico->fim_de_uso = Carbon::now()->format('Y-m-d H:i:s');
+            $armaHistorico->ended_on = Carbon::now()->format('Y-m-d H:i:s');
             $armaHistorico->save();
         }
 
         ArmaHistoricoUso::create([
-            'arma_id' => $armaId,
-            'agente_id' => $request->input('agente_id'),
-            'inicio_de_uso' => Carbon::now()->format('Y-m-d H:i:s')
+            'equipment_id' => $armaId,
+            'agent_id' => $request->input('agente_id'),
+            'started_on' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         Arma::where('id', $armaId)
             ->update([
-                'disponibilidade' => 0,
+                'is_available' => 0,
             ]);
     }
 }

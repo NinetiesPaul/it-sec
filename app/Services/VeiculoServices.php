@@ -30,14 +30,14 @@ class VeiculoServices
     public static function store(Request $request)
     {
         Veiculo::create([
-            'tipo' => $request->input('tipo'),
-            'fabricante' => $request->input('fabricante'),
-            'modelo' => $request->input('modelo'),
-            'ano' => $request->input('ano'),
-            'renavam' => $request->input('renavam'),
-            'cor' => $request->input('cor'),
-            'placa' => $request->input('placa'),
-            'disponibilidade' => $request->input('disponibilidade'),
+            'type' => $request->input('type'),
+            'make' => $request->input('make'),
+            'model' => $request->input('model'),
+            'year' => $request->input('year'),
+            'register' => $request->input('register'),
+            'color' => $request->input('color'),
+            'license' => $request->input('license'),
+            'is_available' => 1,
         ]);
     }
 
@@ -45,70 +45,70 @@ class VeiculoServices
     {
         Veiculo::where('id', $veiculoId)
             ->update([
-                'tipo' => $request->input('tipo'),
-                'fabricante' => $request->input('fabricante'),
-                'modelo' => $request->input('modelo'),
-                'ano' => $request->input('ano'),
-                'renavam' => $request->input('renavam'),
-                'cor' => $request->input('cor'),
-                'placa' => $request->input('placa'),
+                'type' => $request->input('type'),
+                'make' => $request->input('make'),
+                'model' => $request->input('model'),
+                'year' => $request->input('year'),
+                'register' => $request->input('register'),
+                'color' => $request->input('color'),
+                'license' => $request->input('license'),
             ]);
     }
 
     public static function usageHistory($veiculoId)
     {
-        return VeiculoHistoricoUso::select(['veiculo_historico_uso.*','usuario.nome','usuario.id as usuario_id'])
-            ->join('agente', 'agente.id', 'veiculo_historico_uso.agente_id')
-            ->join('usuario', 'usuario.id', 'agente.usuario_id')
-            ->where('veiculo_id', $veiculoId)
+        return VeiculoHistoricoUso::select(['vehicle_usage_history.*','users.name','users.id as user_id'])
+            ->join('agent', 'agent.id', 'vehicle_usage_history.agent_id')
+            ->join('users', 'users.id', 'agent.user_id')
+            ->where('vehicle_id', $veiculoId)
             ->orderBy('id', 'desc')
             ->paginate(5);
     }
 
     public static function setUsage($veiculoId, Request $request)
     {
-        $veiculoHistorico = VeiculoHistoricoUso::where('veiculo_id', $veiculoId)
-            ->whereNull('fim_de_uso')
+        $veiculoHistorico = VeiculoHistoricoUso::where('vehicle_id', $veiculoId)
+            ->whereNull('ended_on')
             ->first();
 
         if ($veiculoHistorico) {
-            if ($veiculoHistorico->agente_id === (int) $request->input('agente_id')) {
+            if ($veiculoHistorico->agent_id === (int) $request->input('agent_id')) {
                 return null;
             }
 
-            $veiculoHistorico->fim_de_uso = Carbon::now()->format('Y-m-d H:i:s');
+            $veiculoHistorico->ended_on = Carbon::now()->format('Y-m-d H:i:s');
             $veiculoHistorico->save();
         }
 
         VeiculoHistoricoUso::create([
-            'veiculo_id' => $veiculoId,
-            'agente_id' => $request->input('agente_id'),
-            'inicio_de_uso' => Carbon::now()->format('Y-m-d H:i:s')
+            'vehicle_id' => $veiculoId,
+            'agent_id' => $request->input('agent_id'),
+            'started_on' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         Veiculo::where('id', $veiculoId)
             ->update([
-                'disponibilidade' => 0,
+                'is_available' => 0,
             ]);
     }
 
     public static function getMaintenanceHistory($veiculoId)
     {
-        return VeiculoHistoricoManutencao::where('veiculo_id', $veiculoId)->get();
+        return VeiculoHistoricoManutencao::where('vehicle_id', $veiculoId)->get();
     }
 
     public static function setMaintenanceHistory($veiculoId, Request $request)
     {
-        $valor = str_replace(".", "", $request->input('valor'));
-        $valor = str_replace(",", ".", $valor);
+        $cost = str_replace(".", "", $request->input('cost'));
+        $cost = str_replace(",", ".", $cost);
 
         VeiculoHistoricoManutencao::create([
-            'veiculo_id' => $veiculoId,
-            'inicio_de_manutencao' => Carbon::parse($request->input('data_inicio'))->format('Y-m-d H:i:s'),
-            'fim_de_manutencao' => Carbon::parse($request->input('data_fim'))->format('Y-m-d H:i:s'),
-            'local' => $request->input('local'),
-            'valor' => floatval($valor),
-            'descricao' => $request->input('descricao')
+            'vehicle_id' => $veiculoId,
+            'started_on' => Carbon::parse($request->input('started_on'))->format('Y-m-d'),
+            'ended_on' => Carbon::parse($request->input('ended_on'))->format('Y-m-d'),
+            'location' => $request->input('location'),
+            'cost' => floatval($cost),
+            'description' => $request->input('description')
         ]);
     }
 }
