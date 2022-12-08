@@ -13,16 +13,16 @@ class TabelaVeiculo extends Migration
      */
     public function up()
     {
-        Schema::create('veiculo', function (Blueprint $table) {
+        Schema::create('vehicle', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo', ['MOTO', 'VEICULO_4P', 'VEICULO_2P', 'OUTRO_TIPO']);
-            $table->string('fabricante');
-            $table->string('modelo');
-            $table->integer('ano');
-            $table->string('renavam');
-            $table->string('placa');
-            $table->string('cor');
-            $table->boolean('disponibilidade')->default(true);
+            $table->enum('type', ['MOTORCYCLE', '4_DOOR', '2_DOOR', 'OTHER']);
+            $table->string('make');
+            $table->string('model');
+            $table->integer('year');
+            $table->string('register');
+            $table->string('license');
+            $table->string('color');
+            $table->boolean('is_available')->default(true);
         });
     }
 

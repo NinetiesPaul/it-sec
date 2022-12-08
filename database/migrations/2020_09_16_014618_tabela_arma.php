@@ -13,14 +13,14 @@ class TabelaArma extends Migration
      */
     public function up()
     {
-        Schema::create('arma', function (Blueprint $table) {
+        Schema::create('equipment', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo', ['PISTOLA', 'REVOLVER', 'ESCOPETA', 'OUTRO_TIPO']);
-            $table->string('fabricante');
-            $table->string('modelo');
-            $table->string('n_serie');
-            $table->string('observacoes')->nullable(true);
-            $table->boolean('disponibilidade')->default(true);
+            $table->enum('type', ['GUN', 'OTHER']);
+            $table->string('make');
+            $table->string('model');
+            $table->string('sn');
+            $table->string('notes')->nullable(true);
+            $table->boolean('is_available')->default(true);
         });
     }
 

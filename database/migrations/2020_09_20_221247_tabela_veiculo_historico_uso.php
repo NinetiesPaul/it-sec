@@ -13,15 +13,15 @@ class TabelaVeiculoHistoricoUso extends Migration
      */
     public function up()
     {
-        Schema::create('veiculo_historico_uso', function (Blueprint $table) {
+        Schema::create('vehicle_usage_history', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('veiculo_id');
-            $table->unsignedBigInteger('agente_id');
-            $table->dateTime('inicio_de_uso');
-            $table->dateTime('fim_de_uso')->nullable(true);
+            $table->unsignedBigInteger('vehicle_id');
+            $table->unsignedBigInteger('agent_id');
+            $table->dateTime('started_on');
+            $table->dateTime('ended_on')->nullable(true);
 
-            $table->foreign('veiculo_id')->references('id')->on('veiculo');
-            $table->foreign('agente_id')->references('id')->on('agente');
+            $table->foreign('vehicle_id')->references('id')->on('vehicle');
+            $table->foreign('agent_id')->references('id')->on('agent');
         });
     }
 

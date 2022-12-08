@@ -13,16 +13,16 @@ class TabelaVeiculoHistoricoManutencao extends Migration
      */
     public function up()
     {
-        Schema::create('veiculo_historico_manutencao', function (Blueprint $table) {
+        Schema::create('vehicle_maintenance_history', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('veiculo_id');
-            $table->date('inicio_de_manutencao');
-            $table->date('fim_de_manutencao')->nullable(true);
-            $table->string('local');
-            $table->double('valor');
-            $table->text('descricao');
+            $table->unsignedBigInteger('vehicle_id');
+            $table->date('started_on');
+            $table->date('ended_on')->nullable(true);
+            $table->string('location');
+            $table->double('cost');
+            $table->text('description');
 
-            $table->foreign('veiculo_id')->references('id')->on('veiculo');
+            $table->foreign('vehicle_id')->references('id')->on('vehicle');
         });
     }
 
