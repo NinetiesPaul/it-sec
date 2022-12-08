@@ -4,22 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Services\AgenteServices;
+use App\Services\AgentServices;
 use App\Services\AreaServices;
 use Illuminate\Http\Request;
 
-class AreaController extends Controller
+class AreaController extends AdminController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function index()
     {
         $areas = AreaServices::getAll();
@@ -46,7 +36,7 @@ class AreaController extends Controller
 
     public function usage($areaId)
     {
-        $agentes = AgenteServices::getAll();
+        $agentes = AgentServices::getAll();
         $historicos = AreaServices::usageHistory($areaId);
         return view('admin.area.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'areaId' => $areaId ]);
     }

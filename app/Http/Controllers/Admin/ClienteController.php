@@ -8,18 +8,8 @@ use App\Services\ClienteServices;
 use App\Services\EstadoServices;
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+class ClienteController extends AdminController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function index()
     {
         $clientes = ClienteServices::getAll();

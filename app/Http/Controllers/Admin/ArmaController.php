@@ -4,22 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Services\AgenteServices;
+use App\Services\AgentServices;
 use App\Services\ArmaServices;
 use Illuminate\Http\Request;
 
-class ArmaController extends Controller
+class ArmaController extends AdminController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function index()
     {
         $armas = ArmaServices::getAll();
@@ -29,7 +19,7 @@ class ArmaController extends Controller
     public function store(Request $request)
     {
         ArmaServices::store($request);
-        return redirect('admin/arma');
+        return redirect('admin/equipment');
     }
 
     public function edit($armaId)
@@ -41,12 +31,12 @@ class ArmaController extends Controller
     public function update($armaId, Request $request)
     {
         ArmaServices::update($armaId, $request);
-        return redirect('admin/arma/' . $armaId);
+        return redirect('admin/equipment/' . $armaId);
     }
 
     public function usage($armaId)
     {
-        $agentes = AgenteServices::getAll();
+        $agentes = AgentServices::getAll();
         $historicos = ArmaServices::usageHistory($armaId);
         return view('admin.arma.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'armaId' => $armaId ]);
     }
@@ -54,6 +44,6 @@ class ArmaController extends Controller
     public function assign($armaId, Request $request)
     {
         ArmaServices::setUsage($armaId, $request);
-        return redirect('admin/arma/' . $armaId . '/uso');
+        return redirect('admin/equipment/' . $armaId . '/usage');
     }
 }

@@ -4,22 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Services\AgenteServices;
+use App\Services\AgentServices;
 use App\Services\VeiculoServices;
 use Illuminate\Http\Request;
 
-class VeiculoController extends Controller
+class VeiculoController extends AdminController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function index()
     {
         $veiculos = VeiculoServices::getAll();
@@ -29,7 +19,7 @@ class VeiculoController extends Controller
     public function store(Request $request)
     {
         VeiculoServices::store($request);
-        return redirect('admin/veiculo');
+        return redirect('admin/vehicle');
     }
 
     public function edit($veiculoId)
@@ -41,12 +31,12 @@ class VeiculoController extends Controller
     public function update($veiculoId, Request $request)
     {
         VeiculoServices::update($veiculoId, $request);
-        return redirect('admin/veiculo/' . $veiculoId);
+        return redirect('admin/vehicle/' . $veiculoId);
     }
 
     public function usage($veiculoId)
     {
-        $agentes = AgenteServices::getAll();
+        $agentes = AgentServices::getAll();
         $historicos = VeiculoServices::usageHistory($veiculoId);
         return view('admin.veiculo.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'veiculoId' => $veiculoId ]);
     }
@@ -54,7 +44,7 @@ class VeiculoController extends Controller
     public function assign($veiculoId, Request $request)
     {
         VeiculoServices::setUsage($veiculoId, $request);
-        return redirect('admin/veiculo/' . $veiculoId . '/uso');
+        return redirect('admin/vehicle/' . $veiculoId . '/usage');
     }
 
     public function indexMaintenance($veiculoId)
@@ -66,6 +56,6 @@ class VeiculoController extends Controller
     public function storeMaintenance($veiculoId, Request $request)
     {
         VeiculoServices::setMaintenanceHistory($veiculoId, $request);
-        return redirect('admin/veiculo/' . $veiculoId . '/manutencao');
+        return redirect('admin/vehicle/' . $veiculoId . '/maintenance');
     }
 }

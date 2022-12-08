@@ -7,18 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Services\AtendimentoServices;
 use Illuminate\Http\Request;
 
-class AtendimentoController extends Controller
+class AtendimentoController extends AdminController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function index()
     {
         //

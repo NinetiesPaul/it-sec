@@ -5,51 +5,41 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Agente;
-use App\Services\AgenteServices;
+use App\Services\AgentServices;
 use App\Services\EstadoServices;
 use Illuminate\Http\Request;
 
-class AgenteController extends Controller
+class AgenteController extends AdminController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function index()
     {
-        $agentes = AgenteServices::getAll();
-        $estados = EstadoServices::getAll();
-        return view('admin.agente.index', [ 'usuarios' => $agentes, 'estados' => $estados]);
+        $agents = AgentServices::getAll();
+        $states = EstadoServices::getAll();
+        return view('admin.agente.index', [ 'users' => $agents, 'states' => $states]);
     }
 
     public function store(Request $request)
     {
-        AgenteServices::store($request);
-        return redirect('admin/agente');
+        AgentServices::store($request);
+        return redirect('admin/agent');
     }
 
     public function edit($usuarioId)
     {
-        $agente = AgenteServices::getOne($usuarioId);
+        $agente = AgentServices::getOne($usuarioId);
         $estados = EstadoServices::getAll();
-        return view('admin.agente.edit', [ 'usuario' => $agente, 'estados' => $estados ]);
+        return view('admin.agente.edit', [ 'user' => $agente, 'states' => $estados ]);
     }
 
     public function update($usuarioId, Request $request)
     {
-        AgenteServices::update($usuarioId, $request);
-        return redirect('admin/agente/' . $usuarioId);
+        AgentServices::update($usuarioId, $request);
+        return redirect('admin/agent/' . $usuarioId);
     }
 
     public function usage($usuarioId)
     {
-        $usage = AgenteServices::usage($usuarioId);
+        $usage = AgentServices::usage($usuarioId);
 
         $armas = $usage[0];
         $veiculos = $usage[1];
