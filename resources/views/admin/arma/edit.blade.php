@@ -23,11 +23,11 @@
                             Logado como admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Armas</a>
+                            <a class="dropdown-item" href="{{ route('admin.equipment') }}">Armas</a>
                             <a class="dropdown-item" href="{{ route('admin.area') }}">Área</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Agente</a>
-                            <a class="dropdown-item" href="{{ route('admin.cliente') }}">Cliente</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Veiculos</a>
+                            <a class="dropdown-item" href="{{ route('admin.agent') }}">Agente</a>
+                            <a class="dropdown-item" href="{{ route('admin.client') }}">Cliente</a>
+                            <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../../logout">Sair</a>
                         </div>
@@ -39,43 +39,41 @@
         <div class="container">
             <div class="jumbotron text-center">
                 <p><strong>Alteração de Arma</strong></p>
-                <form action="/admin/arma/{{$arma->id}}" method="post" role="form" class="form-horizontal " >
+                <form action="/admin/equipment/{{$arma->id}}" method="post" role="form" class="form-horizontal " >
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
 
                     <div class="form-group row justify-content-center ">
-                        <label for="tipo" class="col-form-label col-md-2 col-form-label-sm ">Tipo:</label>
+                        <label for="type" class="col-form-label col-md-2 col-form-label-sm ">Tipo:</label>
                         <div class="col-md-3">
-                            <select name="tipo" id="tipo" class="form-control form-control-sm selectpicker" title="Selecione um tipo" required>
-                                <option value="PISTOLA" {{ ($arma->tipo === 'PISTOLA') ? "selected" : '' }}>Pistola</option>
-                                <option value="ESCOPETA" {{ ($arma->tipo === 'ESCOPETA') ? "selected" : '' }}>Escopeta</option>
-                                <option value="REVOLVER" {{ ($arma->tipo === 'REVOLVER') ? "selected" : '' }}>Revolver</option>
-                                <option value="OUTRO_TIPO" {{ ($arma->tipo === 'OUTRO_TIPO') ? "selected" : '' }}>Outro tipo</option>
+                            <select name="type" id="type" class="form-control form-control-sm selectpicker" title="Selecione um tipo" required>
+                                <option value="GUN" {{ ($arma->type === 'GUN') ? "selected" : '' }}>Arma de fogo</option>
+                                <option value="OTHER" {{ ($arma->tipo === 'OTHER') ? "selected" : '' }}>Outro</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row justify-content-center ">
-                        <label for="fabricante" class="col-form-label col-md-2 col-form-label-sm ">Fabricante:</label>
+                        <label for="make" class="col-form-label col-md-2 col-form-label-sm ">Fabricante:</label>
                         <div class="col-md-3">
-                            <input type="text" name="fabricante" id="fabricante" class="form-control form-control-sm" value="{{$arma->fabricante}}" required>
+                            <input type="text" name="make" id="make" class="form-control form-control-sm" value="{{$arma->make}}" required>
                         </div>
                     </div>
                     <div class="form-group row justify-content-center ">
-                        <label for="modelo" class="col-form-label col-md-2 col-form-label-sm ">Modelo:</label>
+                        <label for="model" class="col-form-label col-md-2 col-form-label-sm ">Modelo:</label>
                         <div class="col-md-3">
-                            <input type="text" name="modelo" id="modelo" class="form-control form-control-sm" value="{{$arma->modelo}}" required>
+                            <input type="text" name="model" id="model" class="form-control form-control-sm" value="{{$arma->model}}" required>
                         </div>
                     </div>
                     <div class="form-group row justify-content-center ">
-                        <label for="n_serie" class="col-form-label col-md-2 col-form-label-sm ">Nº de Série:</label>
+                        <label for="sn" class="col-form-label col-md-2 col-form-label-sm ">Nº de Série:</label>
                         <div class="col-md-3">
-                            <input type="text" name="n_serie" id="n_serie" class="form-control form-control-sm" value="{{$arma->n_serie}}" required>
+                            <input type="text" name="sn" id="sn" class="form-control form-control-sm" value="{{$arma->sn}}" required>
                         </div>
                     </div>
                     <div class="form-group row justify-content-center ">
-                        <label for="observacoes" class="col-form-label col-md-2 col-form-label-sm ">Observações:</label>
+                        <label for="notes" class="col-form-label col-md-2 col-form-label-sm ">Observações:</label>
                         <div class="col-md-3">
-                            <input type="text" name="observacoes" id="observacoes" class="form-control form-control-sm" value="{{$arma->observacoes}}" >
+                            <input type="text" name="notes" id="notes" class="form-control form-control-sm" value="{{$arma->notes}}" >
                         </div>
                     </div>
 

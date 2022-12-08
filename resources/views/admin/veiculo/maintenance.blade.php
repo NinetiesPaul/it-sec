@@ -16,7 +16,7 @@
             } );
 
             $(document).ready(function(){
-                $('#valor').mask('000.000.000.000.000,00', {reverse: true});
+                $('#cost').mask('000.000.000.000.000,00', {reverse: true});
 
                 $("#cadastrar_veiculo_list").css('height', $("#cadastrar_veiculo_form").css('height'));
 
@@ -41,11 +41,11 @@
                             Logado como admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Armas</a>
+                            <a class="dropdown-item" href="{{ route('admin.equipment') }}">Armas</a>
                             <a class="dropdown-item" href="{{ route('admin.area') }}">Áreas</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Agentes</a>
-                            <a class="dropdown-item" href="{{ route('admin.cliente') }}">Clientes</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Veiculos</a>
+                            <a class="dropdown-item" href="{{ route('admin.agent') }}">Agentes</a>
+                            <a class="dropdown-item" href="{{ route('admin.client') }}">Clientes</a>
+                            <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../../../logout">Sair</a>
                         </div>
@@ -69,36 +69,36 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="cadastrar_veiculo_form" role="tabpanel" >
                         <p><strong>Atribuição de Veiculo</strong></p>
-                        <form action="/admin/veiculo/{{$veiculoId}}/manutencao" method="post" role="form" class="form-horizontal " >
+                        <form action="/admin/vehicle/{{$veiculoId}}/maintenance" method="post" role="form" class="form-horizontal " >
                             @csrf
                             <div class="form-group row justify-content-center ">
-                                <label for="data_inicio" class="col-form-label col-md-2 col-form-label-sm ">Data de Inicio:</label>
+                                <label for="started_on" class="col-form-label col-md-2 col-form-label-sm ">Data de Inicio:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="data_inicio" id="data_inicio" class="form-control form-control-sm" >
+                                    <input type="text" name="started_on" id="started_on" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="data_fim" class="col-form-label col-md-2 col-form-label-sm ">Data de Fim:</label>
+                                <label for="ended_on" class="col-form-label col-md-2 col-form-label-sm ">Data de Fim:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="data_fim" id="data_fim" class="form-control form-control-sm" >
+                                    <input type="text" name="ended_on" id="ended_on" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="local" class="col-form-label col-md-2 col-form-label-sm ">Local:</label>
+                                <label for="location" class="col-form-label col-md-2 col-form-label-sm ">Local:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="local" id="local" class="form-control form-control-sm" >
+                                    <input type="text" name="location" id="location" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="valor" class="col-form-label col-md-2 col-form-label-sm ">Valor:</label>
+                                <label for="cost" class="col-form-label col-md-2 col-form-label-sm ">Valor:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="valor" id="valor" class="form-control form-control-sm" >
+                                    <input type="text" name="cost" id="cost" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="descricao" class="col-form-label col-md-2 col-form-label-sm ">Descrição:</label>
+                                <label for="description" class="col-form-label col-md-2 col-form-label-sm ">Descrição:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="descricao" id="descricao" class="form-control form-control-sm" >
+                                    <input type="text" name="description" id="description" class="form-control form-control-sm" >
                                 </div>
                             </div>
 
@@ -120,11 +120,11 @@
                             <tbody>
                             @foreach($historicos as $historico)
                                 <tr>
-                                    <td>{{$historico->inicio_de_manutencao}}</td>
-                                    <td>{{$historico->fim_de_manutencao}}</td>
-                                    <td>{{$historico->local}}</td>
-                                    <td>R$ {{number_format($historico->valor, 2, ",", ".")}}</td>
-                                    <td>{{$historico->descricao}}</td>
+                                    <td>{{$historico->started_on}}</td>
+                                    <td>{{$historico->ended_on}}</td>
+                                    <td>{{$historico->location}}</td>
+                                    <td>R$ {{number_format($historico->cost, 2, ",", ".")}}</td>
+                                    <td>{{$historico->description}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

@@ -23,11 +23,11 @@
                             Logado como admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Armas</a>
+                            <a class="dropdown-item" href="{{ route('admin.equipment') }}">Armas</a>
                             <a class="dropdown-item" href="{{ route('admin.area') }}">Áreas</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Agentes</a>
-                            <a class="dropdown-item" href="{{ route('admin.cliente') }}">Clientes</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Veiculos</a>
+                            <a class="dropdown-item" href="{{ route('admin.agent') }}">Agentes</a>
+                            <a class="dropdown-item" href="{{ route('admin.client') }}">Clientes</a>
+                            <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../logout">Sair</a>
                         </div>
@@ -52,44 +52,41 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="cadastrar_arma_form" role="tabpanel" >
                         <p><strong>Cadastro de Arma</strong></p>
-                        <form action="/admin/arma" method="post" role="form" class="form-horizontal " >
+                        <form action="/admin/equipment" method="post" role="form" class="form-horizontal " >
                             @csrf
                             <div class="form-group row justify-content-center ">
-                                <label for="tipo" class="col-form-label col-md-2 col-form-label-sm ">Tipo:</label>
+                                <label for="type" class="col-form-label col-md-2 col-form-label-sm ">Tipo:</label>
                                 <div class="col-md-3">
-                                    <select name="tipo" id="tipo" class="form-control form-control-sm selectpicker" title="Selecione um tipo" required>
-                                        <option value="PISTOLA">Pistola</option>
-                                        <option value="ESCOPETA">Escopeta</option>
-                                        <option value="REVOLVER">Revolver</option>
-                                        <option value="OUTRO_TIPO">Outro tipo</option>
+                                    <select name="type" id="type" class="form-control form-control-sm selectpicker" title="Selecione um tipo" required>
+                                        <option value="GUN">Arma de Fogo</option>
+                                        <option value="OTHER">Outro</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="fabricante" class="col-form-label col-md-2 col-form-label-sm ">Fabricante:</label>
+                                <label for="make" class="col-form-label col-md-2 col-form-label-sm ">Fabricante:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="fabricante" id="fabricante" class="form-control form-control-sm" required>
+                                    <input type="text" name="make" id="make" class="form-control form-control-sm" required>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="modelo" class="col-form-label col-md-2 col-form-label-sm ">Modelo:</label>
+                                <label for="model" class="col-form-label col-md-2 col-form-label-sm ">Modelo:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="modelo" id="modelo" class="form-control form-control-sm" required>
+                                    <input type="text" name="model" id="model" class="form-control form-control-sm" required>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="n_serie" class="col-form-label col-md-2 col-form-label-sm ">Nº de Série:</label>
+                                <label for="sn" class="col-form-label col-md-2 col-form-label-sm ">Nº de Série:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="n_serie" id="n_serie" class="form-control form-control-sm" required>
+                                    <input type="text" name="sn" id="sn" class="form-control form-control-sm" required>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="observacoes" class="col-form-label col-md-2 col-form-label-sm ">Observações:</label>
+                                <label for="notes" class="col-form-label col-md-2 col-form-label-sm ">Observações:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="observacoes" id="observacoes" class="form-control form-control-sm" >
+                                    <input type="text" name="notes" id="notes" class="form-control form-control-sm" >
                                 </div>
                             </div>
-
 
                             <button type="submit" id="btn" class="btn btn-primary btn-sm"><span class='glyphicon glyphicon-plus'></span> Cadastrar</button>
                         </form>
@@ -113,15 +110,14 @@
                             @foreach($armas as $arma)
                                 <tr>
                                     <th scope="row">{{$arma->id}}</th>
-                                    <td>{{$arma->tipo}}</td>
-                                    <td>{{$arma->fabricante}}</td>
-                                    <td>{{$arma->modelo}}</td>
-                                    <td>{{$arma->n_serie}}</td>
-                                    <td>{{$arma->disponibilidade}}</td>
+                                    <td>{{$arma->type}}</td>
+                                    <td>{{$arma->make}}</td>
+                                    <td>{{$arma->model}}</td>
+                                    <td>{{$arma->sn}}</td>
+                                    <td>{{$arma->is_available}}</td>
                                     <td>
-                                        <a href="arma/{{$arma->id}}/uso">Uso</a> |
-                                        <a href="arma/{{$arma->id}}/manutencao">Manutenção</a> |
-                                        <a href="arma/{{$arma->id}}">Editar</a>
+                                        <a href="equipment/{{$arma->id}}">Editar</a> |
+                                        <a href="equipment/{{$arma->id}}/usage">Uso</a>
                                     </td>
                                 </tr>
                             @endforeach

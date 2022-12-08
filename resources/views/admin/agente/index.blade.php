@@ -47,11 +47,11 @@
                             Logado como admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Armas</a>
+                            <a class="dropdown-item" href="{{ route('admin.equipment') }}">Armas</a>
                             <a class="dropdown-item" href="{{ route('admin.area') }}">Áreas</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Agentes</a>
-                            <a class="dropdown-item" href="{{ route('admin.cliente') }}">Clientes</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Veiculos</a>
+                            <a class="dropdown-item" href="{{ route('admin.agent') }}">Agentes</a>
+                            <a class="dropdown-item" href="{{ route('admin.client') }}">Clientes</a>
+                            <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../logout">Sair</a>
                         </div>
@@ -76,12 +76,12 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="cadastrar_agente_form" role="tabpanel" >
                         <p><strong>Cadastro de Agente</strong></p>
-                        <form action="/admin/agente" method="post" role="form" class="form-horizontal " >
+                        <form action="/admin/agent" method="post" role="form" class="form-horizontal " >
                             @csrf
                             <div class="form-group row justify-content-center ">
-                                <label for="nome" class="col-form-label col-md-2 col-form-label-sm ">Nome:</label>
+                                <label for="name" class="col-form-label col-md-2 col-form-label-sm ">Nome:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="nome" id="nome" class="form-control form-control-sm" required>
+                                    <input type="text" name="name" id="name" class="form-control form-control-sm" required>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
@@ -101,69 +101,69 @@
                             <hr/>
 
                             <div class="form-group row justify-content-center ">
-                                <label for="tel1" class="col-form-label col-md-2 col-form-label-sm ">Telefone Residencial:</label>
+                                <label for="phone1" class="col-form-label col-md-2 col-form-label-sm ">Telefone Residencial:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="tel1" id="tel1" class="form-control form-control-sm" >
+                                    <input type="text" name="phone1" id="phone1" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="tel2" class="col-form-label col-md-2 col-form-label-sm ">Telefone Móvel:</label>
+                                <label for="phone2" class="col-form-label col-md-2 col-form-label-sm ">Telefone Móvel:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="tel2" id="tel2" class="form-control form-control-sm" >
+                                    <input type="text" name="phone2" id="phone2" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="avatar" class="col-form-label col-md-2 col-form-label-sm ">Avatar:</label>
+                                <label for="profile_picture" class="col-form-label col-md-2 col-form-label-sm ">Avatar:</label>
                                 <div class="col-md-3">
-                                    <input type="file" name="avatar" id="avatar" class="form-control form-control-sm" >
+                                    <input type="file" name="profile_picture" id="profile_picture" class="form-control form-control-sm" >
                                 </div>
                             </div>
 
                             <hr/>
 
                             <div class="form-group row justify-content-center ">
-                                <label for="rua" class="col-form-label col-md-2 col-form-label-sm ">Rua:</label>
+                                <label for="street" class="col-form-label col-md-2 col-form-label-sm ">Rua:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="rua" id="rua" class="form-control form-control-sm" >
+                                    <input type="text" name="street" id="street" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="numero" class="col-form-label col-md-2 col-form-label-sm ">Número:</label>
+                                <label for="number" class="col-form-label col-md-2 col-form-label-sm ">Número:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="numero" id="numero" class="form-control form-control-sm" >
+                                    <input type="text" name="number" id="number" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="bairro" class="col-form-label col-md-2 col-form-label-sm ">Bairro:</label>
+                                <label for="detail1" class="col-form-label col-md-2 col-form-label-sm ">Bairro:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="bairro" id="bairro" class="form-control form-control-sm" >
+                                    <input type="text" name="detail1" id="detail1" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="cep" class="col-form-label col-md-2 col-form-label-sm ">CEP:</label>
+                                <label for="zip" class="col-form-label col-md-2 col-form-label-sm ">CEP:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="cep" id="cep" class="form-control form-control-sm" >
+                                    <input type="text" name="zip" id="zip" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="cidade" class="col-form-label col-md-2 col-form-label-sm ">Cidade:</label>
+                                <label for="city" class="col-form-label col-md-2 col-form-label-sm ">Cidade:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="cidade" id="cidade" class="form-control form-control-sm" >
+                                    <input type="text" name="city" id="city" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="complemento" class="col-form-label col-md-2 col-form-label-sm ">Complemento:</label>
+                                <label for="detail2" class="col-form-label col-md-2 col-form-label-sm ">Complemento:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="complemento" id="complemento" class="form-control form-control-sm" >
+                                    <input type="text" name="detail2" id="detail2" class="form-control form-control-sm" >
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="estado_id" class="col-form-label col-md-2 col-form-label-sm ">Estado:</label>
+                                <label for="state_id" class="col-form-label col-md-2 col-form-label-sm ">Estado:</label>
                                 <div class="col-md-3">
 
-                                    <select name="estado_id" id="estado_id" class="form-control form-control-sm selectpicker" title="Selecione um estado" required>
-                                        @foreach($estados as $estado)
-                                            <option value="{{$estado->id}}" >{{$estado->nome}}</option>
+                                    <select name="state_id" id="state_id" class="form-control form-control-sm selectpicker" title="Selecione um estado" required>
+                                        @foreach($states as $state)
+                                            <option value="{{$state->id}}" >{{$state->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -187,15 +187,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($usuarios as $usuario)
+                            @foreach($users as $user)
                                 <tr>
-                                    <th scope="row">{{$usuario->usuario_id}}</th>
-                                    <td>{{$usuario->nome}}</td>
-                                    <td>{{$usuario->mail}}</td>
-                                    <td>{{\Carbon\Carbon::parse($usuario->contratado_em)->format('H:i:s d/m/Y')}}</td>
-                                    <td>{{(isset($usuario->demitido_em)) ? \Carbon\Carbon::parse($usuario->demitido_em)->format('H:i:s d/m/Y') : ''}}</td>
+                                    <th scope="row">{{$user->user_id}}</th>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($user->admitted_on)->format('d/m/Y') }}</td>
+                                    <td>{{( isset($user->terminated_at)) ? \Carbon\Carbon::parse($user->terminated_at)->format('d/m/Y') : '' }}</td>
                                     <td>
-                                        <a href="agente/{{$usuario->usuario_id}}">editar</a> | <a href="agente/{{$usuario->agente_id}}/uso">uso</a>
+                                        <a href="agent/{{$user->user_id}}">editar</a> | <a href="agent/{{$user->agent_id}}/uso">uso</a>
                                     </td>
                                 </tr>
                             @endforeach

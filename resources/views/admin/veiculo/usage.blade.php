@@ -31,11 +31,11 @@
                             Logado como admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Armas</a>
+                            <a class="dropdown-item" href="{{ route('admin.equipment') }}">Armas</a>
                             <a class="dropdown-item" href="{{ route('admin.area') }}">Áreas</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Agentes</a>
-                            <a class="dropdown-item" href="{{ route('admin.cliente') }}">Clientes</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Veiculos</a>
+                            <a class="dropdown-item" href="{{ route('admin.agent') }}">Agentes</a>
+                            <a class="dropdown-item" href="{{ route('admin.client') }}">Clientes</a>
+                            <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../../../logout">Sair</a>
                         </div>
@@ -59,14 +59,14 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="cadastrar_veiculo_form" role="tabpanel" >
                         <p><strong>Atribuição de Veiculo</strong></p>
-                        <form action="/admin/veiculo/{{$veiculoId}}/atribuir" method="post" role="form" class="form-horizontal " >
+                        <form action="/admin/vehicle/{{$veiculoId}}/assign" method="post" role="form" class="form-horizontal " >
                             @csrf
                             <div class="form-group row justify-content-center ">
-                                <label for="agente_id" class="col-form-label col-md-2 col-form-label-sm ">Agente:</label>
+                                <label for="agent_id" class="col-form-label col-md-2 col-form-label-sm ">Agente:</label>
                                 <div class="col-md-3">
-                                    <select name="agente_id" id="agente_id" class="form-control form-control-sm selectpicker" title="Selecione um agente" required>
+                                    <select name="agent_id" id="agent_id" class="form-control form-control-sm selectpicker" title="Selecione um agente" required>
                                         @foreach($agentes as $agente)
-                                            <option value="{{$agente->id}}" >{{ $agente->nome }}</option>
+                                            <option value="{{$agente->id}}" >{{ $agente->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -88,9 +88,9 @@
                             <tbody>
                             @foreach($historicos as $historico)
                                 <tr>
-                                    <td>{{$historico->nome}}</td>
-                                    <td>{{$historico->inicio_de_uso}}</td>
-                                    <td>{{$historico->fim_de_uso}}</td>
+                                    <td>{{$historico->name}}</td>
+                                    <td>{{$historico->started_on}}</td>
+                                    <td>{{$historico->ended_on}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

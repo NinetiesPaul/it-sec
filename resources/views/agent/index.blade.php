@@ -14,24 +14,11 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="PokeXchange">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        </nav>
+        </nav>h
 
         <div class="container text-center">
-            <h3>Bem-vindo</h3>
-
-            <div class="login">
-                <form action="{{ route('login') }}" method="post" class="form-signin">
-                    @csrf
-                    <input type="text" name="email" placeholder="Digite seu login" class="form-control" >
-                    <input type="password" name="password" placeholder="Digite sua senha" class="form-control" >
-                    <select name="tipo" class="form-control" required>
-                        <option value=''>Selecione tipo de login</option>
-                        <option value='admin'>Admin</option>
-                        <option value='agent'>Agente</option>
-                        <option value='cliente'>Cliente</option>
-                    </select><br/>
-                    <input type="submit" value="Login" class="btn btn-lg btn-primary btn-block" ><br/>
-                </form>
+            <div class="jumbotron text-center">
+                I'm an agent!
             </div>
         </div>
 

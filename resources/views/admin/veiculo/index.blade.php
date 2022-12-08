@@ -23,11 +23,11 @@
                             Logado como admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Armas</a>
+                            <a class="dropdown-item" href="{{ route('admin.equipment') }}">Armas</a>
                             <a class="dropdown-item" href="{{ route('admin.area') }}">Áreas</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Agentes</a>
-                            <a class="dropdown-item" href="{{ route('admin.cliente') }}">Clientes</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Veiculos</a>
+                            <a class="dropdown-item" href="{{ route('admin.agent') }}">Agentes</a>
+                            <a class="dropdown-item" href="{{ route('admin.client') }}">Clientes</a>
+                            <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../logout">Sair</a>
                         </div>
@@ -52,53 +52,53 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="cadastrar_veiculo_form" role="tabpanel" >
                         <p><strong>Cadastro de Veiculo</strong></p>
-                        <form action="/admin/veiculo" method="post" role="form" class="form-horizontal " >
+                        <form action="/admin/vehicle" method="post" role="form" class="form-horizontal " >
                             @csrf
                             <div class="form-group row justify-content-center ">
-                                <label for="tipo" class="col-form-label col-md-2 col-form-label-sm ">Tipo:</label>
+                                <label for="type" class="col-form-label col-md-2 col-form-label-sm ">Tipo:</label>
                                 <div class="col-md-3">
-                                    <select name="tipo" id="tipo" class="form-control form-control-sm selectpicker" title="Selecione um tipo" required>
-                                        <option value="MOTO">Moto</option>
-                                        <option value="VEICULO_4P">Veiculo 4 portas</option>
-                                        <option value="VEICULO_2P">Veiculo 2 portas</option>
-                                        <option value="OUTRO_TIPO">Outro tipo</option>
+                                    <select name="type" id="type" class="form-control form-control-sm selectpicker" title="Selecione um tipo" required>
+                                        <option value="MOTORCYCLE">Moto</option>
+                                        <option value="4_DOOR">Veiculo 4 portas</option>
+                                        <option value="2_DOOR">Veiculo 2 portas</option>
+                                        <option value="OTHER">Outro tipo</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="fabricante" class="col-form-label col-md-2 col-form-label-sm ">Fabricante:</label>
+                                <label for="make" class="col-form-label col-md-2 col-form-label-sm ">Fabricante:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="fabricante" id="fabricante" class="form-control form-control-sm" required>
+                                    <input type="text" name="make" id="make" class="form-control form-control-sm" required>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="modelo" class="col-form-label col-md-2 col-form-label-sm ">Modelo:</label>
+                                <label for="model" class="col-form-label col-md-2 col-form-label-sm ">Modelo:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="modelo" id="modelo" class="form-control form-control-sm" required>
+                                    <input type="text" name="model" id="model" class="form-control form-control-sm" required>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="ano" class="col-form-label col-md-2 col-form-label-sm ">Ano:</label>
+                                <label for="year" class="col-form-label col-md-2 col-form-label-sm ">Ano:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="ano" id="ano" class="form-control form-control-sm" required>
+                                    <input type="text" name="year" id="year" class="form-control form-control-sm" required>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="placa" class="col-form-label col-md-2 col-form-label-sm ">Placa:</label>
+                                <label for="license" class="col-form-label col-md-2 col-form-label-sm ">Placa:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="placa" id="placa" class="form-control form-control-sm" required>
+                                    <input type="text" name="license" id="license" class="form-control form-control-sm" required>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="renavam" class="col-form-label col-md-2 col-form-label-sm ">Renavam:</label>
+                                <label for="register" class="col-form-label col-md-2 col-form-label-sm ">Renavam:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="renavam" id="renavam" class="form-control form-control-sm" required>
+                                    <input type="text" name="register" id="register" class="form-control form-control-sm" required>
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center ">
-                                <label for="cor" class="col-form-label col-md-2 col-form-label-sm ">Cor:</label>
+                                <label for="color" class="col-form-label col-md-2 col-form-label-sm ">Cor:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="cor" id="cor" class="form-control form-control-sm" required>
+                                    <input type="text" name="color" id="color" class="form-control form-control-sm" required>
                                 </div>
                             </div>
 
@@ -128,18 +128,18 @@
                             @foreach($veiculos as $veiculo)
                                 <tr>
                                     <th scope="row">{{$veiculo->id}}</th>
-                                    <td>{{$veiculo->tipo}}</td>
-                                    <td>{{$veiculo->fabricante}}</td>
-                                    <td>{{$veiculo->modelo}}</td>
-                                    <td>{{$veiculo->ano}}</td>
-                                    <td>{{$veiculo->renavam}}</td>
-                                    <td>{{$veiculo->cor}}</td>
-                                    <td>{{$veiculo->placa}}</td>
-                                    <td>{{$veiculo->disponibilidade}}</td>
+                                    <td>{{$veiculo->type}}</td>
+                                    <td>{{$veiculo->make}}</td>
+                                    <td>{{$veiculo->model}}</td>
+                                    <td>{{$veiculo->year}}</td>
+                                    <td>{{$veiculo->register}}</td>
+                                    <td>{{$veiculo->color}}</td>
+                                    <td>{{$veiculo->license}}</td>
+                                    <td>{{$veiculo->is_available}}</td>
                                     <td>
-                                        <a href="veiculo/{{$veiculo->id}}/uso">Uso</a> |
-                                        <a href="veiculo/{{$veiculo->id}}/manutencao">Manutenção</a> |
-                                        <a href="veiculo/{{$veiculo->id}}">Editar</a>
+                                        <a href="vehicle/{{$veiculo->id}}">Editar</a> |
+                                        <a href="vehicle/{{$veiculo->id}}/usage">Uso</a> |
+                                        <a href="vehicle/{{$veiculo->id}}/maintenance">Manutenção</a>
                                     </td>
                                 </tr>
                             @endforeach

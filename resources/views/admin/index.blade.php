@@ -41,11 +41,11 @@
 
         <div class="container text-center">
             <div class="jumbotron text-center">
-                <a href="admin/agente" class="btn btn-light btn btn-block">Gerenciamento de Agentes</a>
+                <a href="admin/agent" class="btn btn-light btn btn-block">Gerenciamento de Agentes</a>
                 <a href="admin/area" class="btn btn-light btn btn-block">Gerenciamento de Área</a>
-                <a href="admin/arma" class="btn btn-light btn btn-block">Gerenciamento de Armas</a>
-                <a href="admin/cliente" class="btn btn-light btn btn-block">Gerenciamento de Clientes</a>
-                <a href="admin/veiculo" class="btn btn-light btn btn-block">Gerenciamento de Veículos</a>
+                <a href="admin/equipment" class="btn btn-light btn btn-block">Gerenciamento de Armas</a>
+                <a href="admin/client" class="btn btn-light btn btn-block">Gerenciamento de Clientes</a>
+                <a href="admin/vehicle" class="btn btn-light btn btn-block">Gerenciamento de Veículos</a>
             </div>
         </div>
 

@@ -23,11 +23,11 @@
                             Logado como admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Armas</a>
+                            <a class="dropdown-item" href="{{ route('admin.equipment') }}">Armas</a>
                             <a class="dropdown-item" href="{{ route('admin.area') }}">Área</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Agente</a>
-                            <a class="dropdown-item" href="{{ route('admin.cliente') }}">Cliente</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Veiculos</a>
+                            <a class="dropdown-item" href="{{ route('admin.agent') }}">Agente</a>
+                            <a class="dropdown-item" href="{{ route('admin.client') }}">Cliente</a>
+                            <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../../logout">Sair</a>
                         </div>
@@ -39,55 +39,55 @@
         <div class="container">
             <div class="jumbotron text-center">
                 <p><strong>Alteração de Veiculo</strong></p>
-                <form action="/admin/veiculo/{{$veiculo->id}}" method="post" role="form" class="form-horizontal " >
+                <form action="/admin/vehicle/{{$veiculo->id}}" method="post" role="form" class="form-horizontal " >
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
 
                     <div class="form-group row justify-content-center ">
-                        <label for="tipo" class="col-form-label col-md-2 col-form-label-sm ">Tipo:</label>
+                        <label for="type" class="col-form-label col-md-2 col-form-label-sm ">Tipo:</label>
                         <div class="col-md-3">
-                            <select name="tipo" id="tipo" class="form-control form-control-sm selectpicker" title="Selecione um tipo" required>
-                                <option value="MOTO" {{ ($veiculo->tipo === 'MOTO') ? 'selected' : '' }}>Moto</option>
-                                <option value="VEICULO_4P" {{ ($veiculo->tipo === 'VEICULO_4P') ? 'selected' : '' }}>Veiculo 4 portas</option>
-                                <option value="VEICULO_2P" {{ ($veiculo->tipo === 'VEICULO_2P') ? 'selected' : '' }}>Veiculo 2 portas</option>
-                                <option value="OUTRO_TIPO" {{ ($veiculo->tipo === 'OUTRO_TIPO') ? 'selected' : '' }}>Outro tipo</option>
+                            <select name="type" id="type" class="form-control form-control-sm selectpicker" title="Selecione um tipo" required>
+                                <option value="MOTORCYCLE" {{ ($veiculo->type === 'MOTORCYCLE') ? 'selected' : '' }}>Moto</option>
+                                <option value="4_DOOR" {{ ($veiculo->type === '4_DOOR') ? 'selected' : '' }}>Veiculo 4 portas</option>
+                                <option value="2_DOOR" {{ ($veiculo->type === '2_DOOR') ? 'selected' : '' }}>Veiculo 2 portas</option>
+                                <option value="OTHER" {{ ($veiculo->type === 'OTHER') ? 'selected' : '' }}>Outro tipo</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row justify-content-center ">
-                        <label for="fabricante" class="col-form-label col-md-2 col-form-label-sm ">Fabricante:</label>
+                        <label for="make" class="col-form-label col-md-2 col-form-label-sm ">Fabricante:</label>
                         <div class="col-md-3">
-                            <input type="text" name="fabricante" id="fabricante" class="form-control form-control-sm" value="{{$veiculo->fabricante}}" required>
+                            <input type="text" name="make" id="make" class="form-control form-control-sm" value="{{$veiculo->make}}" required>
                         </div>
                     </div>
                     <div class="form-group row justify-content-center ">
-                        <label for="modelo" class="col-form-label col-md-2 col-form-label-sm ">Modelo:</label>
+                        <label for="model" class="col-form-label col-md-2 col-form-label-sm ">Modelo:</label>
                         <div class="col-md-3">
-                            <input type="text" name="modelo" id="modelo" class="form-control form-control-sm" value="{{$veiculo->modelo}}" required>
+                            <input type="text" name="model" id="model" class="form-control form-control-sm" value="{{$veiculo->model}}" required>
                         </div>
                     </div>
                     <div class="form-group row justify-content-center ">
-                        <label for="ano" class="col-form-label col-md-2 col-form-label-sm ">Ano:</label>
+                        <label for="year" class="col-form-label col-md-2 col-form-label-sm ">Ano:</label>
                         <div class="col-md-3">
-                            <input type="text" name="ano" id="ano" class="form-control form-control-sm" value="{{$veiculo->ano}}" required>
+                            <input type="text" name="year" id="year" class="form-control form-control-sm" value="{{$veiculo->year}}" required>
                         </div>
                     </div>
                     <div class="form-group row justify-content-center ">
-                        <label for="placa" class="col-form-label col-md-2 col-form-label-sm ">Placa:</label>
+                        <label for="license" class="col-form-label col-md-2 col-form-label-sm ">Placa:</label>
                         <div class="col-md-3">
-                            <input type="text" name="placa" id="placa" class="form-control form-control-sm" value="{{$veiculo->placa}}" required>
+                            <input type="text" name="license" id="license" class="form-control form-control-sm" value="{{$veiculo->license}}" required>
                         </div>
                     </div>
                     <div class="form-group row justify-content-center ">
-                        <label for="renavam" class="col-form-label col-md-2 col-form-label-sm ">Renavam:</label>
+                        <label for="register" class="col-form-label col-md-2 col-form-label-sm ">Renavam:</label>
                         <div class="col-md-3">
-                            <input type="text" name="renavam" id="renavam" class="form-control form-control-sm" value="{{$veiculo->renavam}}" required>
+                            <input type="text" name="register" id="register" class="form-control form-control-sm" value="{{$veiculo->register}}" required>
                         </div>
                     </div>
                     <div class="form-group row justify-content-center ">
-                        <label for="cor" class="col-form-label col-md-2 col-form-label-sm ">Cor:</label>
+                        <label for="color" class="col-form-label col-md-2 col-form-label-sm ">Cor:</label>
                         <div class="col-md-3">
-                            <input type="text" name="cor" id="cor" class="form-control form-control-sm" value="{{$veiculo->cor}}" required>
+                            <input type="text" name="color" id="color" class="form-control form-control-sm" value="{{$veiculo->color}}" required>
                         </div>
                     </div>
 
