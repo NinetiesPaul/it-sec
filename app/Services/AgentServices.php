@@ -92,8 +92,8 @@ class AgentServices
 
     public static function usage($agenteId)
     {
-        $armas = ArmaHistoricoUso::where('agente_id', $agenteId)->get();
-        $veiculos = VeiculoHistoricoUso::where('agente_id', $agenteId)->get();
+        $armas = ArmaHistoricoUso::where('agent_id', $agenteId)->get();
+        $veiculos = VeiculoHistoricoUso::where('agent_id', $agenteId)->get();
 
         return [ $armas, $veiculos ];
     }

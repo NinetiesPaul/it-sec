@@ -31,11 +31,11 @@
                             Logado como admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Armas</a>
+                            <a class="dropdown-item" href="{{ route('admin.equipment') }}">Armas</a>
                             <a class="dropdown-item" href="{{ route('admin.area') }}">Áreas</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Agentes</a>
-                            <a class="dropdown-item" href="{{ route('admin.cliente') }}">Clientes</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Veiculos</a>
+                            <a class="dropdown-item" href="{{ route('admin.agent') }}">Agentes</a>
+                            <a class="dropdown-item" href="{{ route('admin.client') }}">Clientes</a>
+                            <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../../../logout">Sair</a>
                         </div>
@@ -70,9 +70,9 @@
                             <tbody>
                             @foreach($armas as $arma)
                                 <tr>
-                                    <td>{{$arma->arma_id}}</td>
-                                    <td>{{$arma->inicio_de_uso}}</td>
-                                    <td>{{$arma->fim_de_uso}}</td>
+                                    <td>{{$arma->equipment_id}}</td>
+                                    <td>{{$arma->started_on}}</td>
+                                    <td>{{$arma->ended_on}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -91,9 +91,9 @@
                             <tbody>
                             @foreach($veiculos as $veiculo)
                                 <tr>
-                                    <td>{{$veiculo->veiculo_id}}</td>
-                                    <td>{{$veiculo->inicio_de_uso}}</td>
-                                    <td>{{$veiculo->fim_de_uso}}</td>
+                                    <td>{{$veiculo->vehicle_id}}</td>
+                                    <td>{{$veiculo->started_on}}</td>
+                                    <td>{{$veiculo->ended_on}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

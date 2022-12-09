@@ -195,7 +195,7 @@
                                     <td>{{ \Carbon\Carbon::parse($user->admitted_on)->format('d/m/Y') }}</td>
                                     <td>{{( isset($user->terminated_at)) ? \Carbon\Carbon::parse($user->terminated_at)->format('d/m/Y') : '' }}</td>
                                     <td>
-                                        <a href="agent/{{$user->user_id}}">editar</a> | <a href="agent/{{$user->agent_id}}/uso">uso</a>
+                                        <a href="agent/{{$user->user_id}}">editar</a> | <a href="agent/{{$user->agent_id}}/usage">uso</a>
                                     </td>
                                 </tr>
                             @endforeach
