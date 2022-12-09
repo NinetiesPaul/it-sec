@@ -28,7 +28,7 @@
                         <option value=''>Selecione tipo de login</option>
                         <option value='admin'>Admin</option>
                         <option value='agent'>Agente</option>
-                        <option value='cliente'>Cliente</option>
+                        <option value='client'>Cliente</option>
                     </select><br/>
                     <input type="submit" value="Login" class="btn btn-lg btn-primary btn-block" ><br/>
                 </form>
