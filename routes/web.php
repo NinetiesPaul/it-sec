@@ -34,19 +34,27 @@ Route::middleware(['auth:agent'])->group(function () {
     Route::get('/agent', [ Agent::class, 'index' ]);
 });
 
+Route::middleware(['auth:client'])->group(function () {
+    Route::get('/client', [ Cliente::class, 'index' ]);
+    Route::get('/call', [ Cliente::class, 'help' ]);
+    /*Route::get('/atendimentos', [ Cliente::class, 'requests' ]);
+    Route::post('/cliente/{clienteId}/atendimento', [ AtendimentoCliente::class, 'store' ]);
+    Route::get('/cliente/{clienteId}/atendimento/{atendimentoId}', [ AtendimentoCliente::class, 'show' ]);*/
+});
+
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin', [ AdminController::class, 'index' ])->name('admin');
 
     Route::get('/admin/agent', [ AgenteController::class, 'index' ])->name('admin.agent');
     Route::post('/admin/agent', [ AgenteController::class, 'store' ]);
     Route::get('/admin/agent/{userId}', [ AgenteController::class, 'edit' ]);
-    Route::get('/admin/agent/{userId}/uso', [ AgenteController::class, 'usage' ]);
+    Route::get('/admin/agent/{userId}/usage', [ AgenteController::class, 'usage' ]);
     Route::put('/admin/agent/{userId}', [ AgenteController::class, 'update' ]);
     
-    Route::get('/admin/cliente', [ ClienteController::class, 'index' ])->name('admin.client');
-    Route::post('/admin/cliente', [ ClienteController::class, 'store' ]);
-    Route::get('/admin/cliente/{usuarioId}', [ ClienteController::class, 'edit' ]);
-    Route::put('/admin/cliente/{usuarioId}', [ ClienteController::class, 'update' ]);
+    Route::get('/admin/client', [ ClienteController::class, 'index' ])->name('admin.client');
+    Route::post('/admin/client', [ ClienteController::class, 'store' ]);
+    Route::get('/admin/client/{userId}', [ ClienteController::class, 'edit' ]);
+    Route::put('/admin/client/{userId}', [ ClienteController::class, 'update' ]);
     
     Route::get('/admin/equipment', [ ArmaController::class, 'index' ])->name('admin.equipment');
     Route::post('/admin/equipment', [ ArmaController::class, 'store' ]);
@@ -75,11 +83,5 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/atendimento/{atendimentoId}', [ AtendimentoController::class, 'show' ]);
     Route::get('/admin/atendimentos/contar', [ AtendimentoController::class, 'counter' ]);
 });
-
-Route::get('/cliente', [ Cliente::class, 'index' ]);
-Route::get('/atendimento', [ Cliente::class, 'help' ]);
-Route::get('/atendimentos', [ Cliente::class, 'requests' ]);
-Route::post('/cliente/{clienteId}/atendimento', [ AtendimentoCliente::class, 'store' ]);
-Route::get('/cliente/{clienteId}/atendimento/{atendimentoId}', [ AtendimentoCliente::class, 'show' ]);
 
 Route::get('/logout', [ LoginController::class, 'logout' ]);
