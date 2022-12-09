@@ -22,6 +22,9 @@ class Controller extends BaseController
         if ($user && $user->isAgent) {
             return redirect()->intended('agent');
         }
+        if ($user && $user->isClient) {
+            return redirect()->intended('client');
+        }
 
         return view('index');
     }

@@ -6,13 +6,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cliente extends Model
+class Client extends Model
 {
-    protected $table = 'cliente';
+    protected $table = 'client';
 
     protected $fillable = [
-        'usuario_id',
-        'area_id',
+        'user_id',
     ];
 
     public $timestamps = false;

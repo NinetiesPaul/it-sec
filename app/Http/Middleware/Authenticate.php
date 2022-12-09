@@ -11,7 +11,7 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, $role)
     {
         $user = Auth::user(); 
-        if ($user && ($user->isAdmin && $role == 'admin' || $user->isAgent && $role == 'agent')) {
+        if ($user && ($user->isAdmin && $role == 'admin' || $user->isAgent && $role == 'agent' || $user->isClient && $role == 'client')) {
             return $next($request);
         }
 

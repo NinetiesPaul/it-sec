@@ -52,4 +52,8 @@ class User extends Authenticatable
     public function isAgent() {
         return $this->hasOne(Agent::class, 'user_id');
     }
+
+    public function isClient() {
+        return $this->hasOne(Client::class, 'user_id');
+    }
 }

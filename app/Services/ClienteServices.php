@@ -6,61 +6,58 @@ namespace App\Services;
 
 use App\Models\Agente;
 use App\Models\ArmaHistoricoUso;
-use App\Models\Cliente;
+use App\Models\Client;
 use App\Models\Endereco;
-use App\Models\Usuario;
+use App\Models\User;
 use App\Models\VeiculoHistoricoUso;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class ClienteServices
 {
     public static function getAll()
     {
-        return Usuario::select(['usuario.*','cliente.*','usuario.id as usuario_id', 'cliente.id as cliente_id'])
-            ->join('cliente', 'cliente.usuario_id', 'usuario.id')
-            ->orderBy('usuario.nome', 'asc')
+        return User::select(['users.*','client.*','users.id as user_id', 'client.id as client_id'])
+            ->join('client', 'client.user_id', 'users.id')
+            ->orderBy('users.name', 'asc')
             ->get();
     }
 
-    public static function getOne($usuarioId)
+    public static function getOne($userId)
     {
-        $usuario = Usuario::select('usuario.*')
-            ->join('cliente', 'cliente.usuario_id', 'usuario.id')
-            ->where('usuario.id', $usuarioId)
-            ->first();
-
-        $usuario->endereco = Endereco::where('id', $usuario->endereco_id)->first();
-
-        return $usuario;
+        return Client::select(['users.*','client.*','address.*', 'users.id as user_id', 'client.id as client_id', 'address.id as address_id'])
+        ->join('users', 'client.user_id', 'users.id')
+        ->join('address', 'users.address_id', 'address.id')
+        ->where('users.id', $userId)
+        ->first();
     }
 
     public static function store(Request $request)
     {
         $endereco = Endereco::create([
-            'rua' => $request->input('rua'),
-            'numero' => (int) $request->input('numero'),
-            'bairro' => $request->input('bairro'),
-            'cep' => $request->input('cep'),
-            'cidade' => $request->input('cidade'),
-            'complemento' => $request->input('complemento'),
-            'estado_id' => $request->input('estado_id')
+            'street' => $request->input('street'),
+            'number' => (int) $request->input('number'),
+            'detail1' => $request->input('detail1'),
+            'zip' => $request->input('zip'),
+            'city' => $request->input('city'),
+            'detail2' => $request->input('detail2'),
+            'state_id' => $request->input('state_id')
         ]);
 
-        $salt = time() + rand(100, 1000);
-        $usuario = Usuario::create([
-            'nome' => $request->input('nome'),
-            'mail' => $request->input('email'),
-            'pass' => md5($request->input('password') . $salt),
-            'tel1' => $request->input('tel1'),
-            'tel2' => $request->input('tel2'),
-            'salt' => $salt,
-            'avatar' => $request->input('avatar'),
-            'endereco_id' => $endereco->id,
+        $usuario = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'phone1' => $request->input('phone1'),
+            'phone2' => $request->input('phone2'),
+            'profile_picture' => $request->input('profile_picture'),
+            'address_id' => $endereco->id,
         ]);
 
-        Cliente::create([
-            'usuario_id' => $usuario->id
+        Client::create([
+            'user_id' => $usuario->id
         ]);
     }
 
@@ -68,32 +65,29 @@ class ClienteServices
     {
 
         $fields = [
-            'nome' => $request->input('nome'),
-            'mail' => $request->input('email'),
-            'tel1' => $request->input('tel1'),
-            'tel2' => $request->input('tel2'),
-            'avatar' => $request->input('avatar')
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone1' => $request->input('phone1'),
+            'phone2' => $request->input('phone2'),
+            'profile_picture' => $request->input('profile_picture')
         ];
 
         if (!empty($request->input('password'))) {
-            $password = $request->input('password');
-            $fields['pass'] = md5($password . $request->input('salt'));
+            $fields['password'] = Hash::make($request->input('password'));
         }
 
-        Usuario::where('usuario.id', $usuarioId)
+        User::where('users.id', $usuarioId)
             ->update($fields);
 
-        if (!empty($request->input('endereco_id')) && $request->input('endereco_id') > 0) {
-            Endereco::where('id', $request->endereco_id)
-                ->update([
-                    'rua' => $request->input('rua'),
-                    'numero' => (int)$request->input('numero'),
-                    'bairro' => $request->input('bairro'),
-                    'cep' => $request->input('cep'),
-                    'cidade' => $request->input('cidade'),
-                    'complemento' => $request->input('complemento'),
-                    'estado_id' => $request->input('estado_id')
-                ]);
-        }
+        Endereco::where('id', $request->address_id)
+            ->update([
+                'street' => $request->input('street'),
+                'number' => (int) $request->input('number'),
+                'detail1' => $request->input('detail1'),
+                'zip' => $request->input('zip'),
+                'city' => $request->input('city'),
+                'detail2' => $request->input('detail2'),
+                'state_id' => $request->input('state_id')
+            ]);
     }
 }

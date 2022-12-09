@@ -45,6 +45,12 @@ class LoginController extends Controller
                     return redirect()->intended('agent');
                 }
                 break;
+            case 'client':
+                if (Auth::attempt($credentials) && Auth::user()->isClient) {
+                    $request->session()->regenerate();
+                    return redirect()->intended('client');
+                }
+                break;
         }
 
         return redirect()->intended('/');
