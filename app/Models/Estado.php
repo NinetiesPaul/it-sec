@@ -12,7 +12,7 @@ class Estado extends Model
 
     protected $fillable = [
         'name',
-        'attribute',
+        'abbreviation',
     ];
 
     public $timestamps = false;
