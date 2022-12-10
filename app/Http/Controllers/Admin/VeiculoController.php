@@ -36,9 +36,10 @@ class VeiculoController extends AdminController
 
     public function usage($veiculoId)
     {
+        $veiculo = VeiculoServices::getOne($veiculoId);
         $agentes = AgentServices::getAll();
         $historicos = VeiculoServices::usageHistory($veiculoId);
-        return view('admin.veiculo.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'veiculoId' => $veiculoId ]);
+        return view('admin.veiculo.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'veiculo' => $veiculo ]);
     }
 
     public function assign($veiculoId, Request $request)

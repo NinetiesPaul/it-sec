@@ -36,9 +36,10 @@ class ArmaController extends AdminController
 
     public function usage($armaId)
     {
+        $arma = ArmaServices::getOne($armaId);
         $agentes = AgentServices::getAll();
         $historicos = ArmaServices::usageHistory($armaId);
-        return view('admin.arma.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'armaId' => $armaId ]);
+        return view('admin.arma.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'arma' => $arma ]);
     }
 
     public function assign($armaId, Request $request)
