@@ -94,7 +94,7 @@ class VeiculoServices
 
     public static function getMaintenanceHistory($veiculoId)
     {
-        return VeiculoHistoricoManutencao::where('vehicle_id', $veiculoId)->get();
+        return VeiculoHistoricoManutencao::where('vehicle_id', $veiculoId)->paginate(5);
     }
 
     public static function setMaintenanceHistory($veiculoId, Request $request)
