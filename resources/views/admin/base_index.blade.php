@@ -15,7 +15,7 @@
 
         <div class="tab-content">
             <div class="tab-pane fade show active" id="cadastrar_form" role="tabpanel" >
-                @yield('register_form')
+                @yield('form')
             </div>
 
             <div class="tab-pane fade show" id="cadastrar_list" role="tabpanel" >
