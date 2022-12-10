@@ -19,4 +19,8 @@ class ArmaHistoricoUso extends Model
     ];
 
     public $timestamps = false;
+
+    public function equipment() {
+        return $this->hasOne(Arma::class, 'id', 'equipment_id');
+    }
 }

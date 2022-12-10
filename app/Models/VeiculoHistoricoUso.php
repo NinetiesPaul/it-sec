@@ -19,4 +19,8 @@ class VeiculoHistoricoUso extends Model
     ];
 
     public $timestamps = false;
+
+    public function vehicle() {
+        return $this->hasOne(Veiculo::class, 'id', 'vehicle_id');
+    }
 }
