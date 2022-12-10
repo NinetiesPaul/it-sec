@@ -13,18 +13,17 @@ class TabelaAtendimentos extends Migration
      */
     public function up()
     {
-        Schema::create('atendimentos', function (Blueprint $table) {
+        Schema::create('callings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cliente_id');
-            $table->dateTime('data');
-            $table->string('descricao');
-            $table->dateTime('respondido_em')->nullable(true);
-            $table->unsignedBigInteger('respondido_por')->nullable(true);
-            $table->dateTime('finalizado_em')->nullable(true);
-            $table->string('observacao')->nullable(true);
+            $table->unsignedBigInteger('client_id');
+            $table->dateTime('date');
+            $table->string('description');
+            $table->dateTime('awnsered_on')->nullable(true);
+            $table->unsignedBigInteger('awnsered_by')->nullable(true);
+            $table->dateTime('ended_on')->nullable(true);
 
-            $table->foreign('cliente_id')->references('id')->on('cliente');
-            $table->foreign('respondido_por')->references('id')->on('agente');
+            $table->foreign('client_id')->references('id')->on('client');
+            $table->foreign('awnsered_by')->references('id')->on('agent');
         });
     }
 

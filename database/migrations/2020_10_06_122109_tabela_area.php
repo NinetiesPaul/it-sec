@@ -15,7 +15,7 @@ class TabelaArea extends Migration
     {
         Schema::create('area', function (Blueprint $table) {
             $table->id();
-            $table->string('descricao');
+            $table->string('description');
         });
     }
 
