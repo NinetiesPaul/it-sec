@@ -5,20 +5,19 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="{{ \Illuminate\Support\Facades\URL::asset('css/navbar.css') }}" rel="stylesheet">
+        <link href="{{ \Illuminate\Support\Facades\URL::asset('css/css.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="../../../../js/jquery.mask.js"></script>
         <script>
             $( function() {
-                $( "#data_inicio" ).datepicker();
-                $( "#data_fim" ).datepicker();
+                $( "#started_on" ).datepicker();
+                $( "#ended_on" ).datepicker();
             } );
 
             $(document).ready(function(){
                 $('#cost').mask('000.000.000.000.000,00', {reverse: true});
-
-                $("#cadastrar_veiculo_list").css('height', $("#cadastrar_veiculo_form").css('height'));
 
                 var page = $(location).attr('href');
                 if (page.includes("page")){
