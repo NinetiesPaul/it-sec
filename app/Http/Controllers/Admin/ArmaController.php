@@ -19,7 +19,7 @@ class ArmaController extends AdminController
     public function store(Request $request)
     {
         ArmaServices::store($request);
-        return redirect('admin/equipment');
+        return redirect('admin/equipment')->with('success', 'Equipamento cadastrado!');
     }
 
     public function edit($armaId)
@@ -31,7 +31,7 @@ class ArmaController extends AdminController
     public function update($armaId, Request $request)
     {
         ArmaServices::update($armaId, $request);
-        return redirect('admin/equipment/' . $armaId);
+        return redirect('admin/equipment/' . $armaId)->with('success', 'Equipamento atualizado!');
     }
 
     public function usage($armaId)

@@ -20,7 +20,7 @@ class ClienteController extends AdminController
     public function store(Request $request)
     {
         ClienteServices::store($request);
-        return redirect('admin/client');
+        return redirect('admin/client')->with('success', 'Cliente cadastrado!');
     }
 
     public function edit($usuarioId)
@@ -33,6 +33,6 @@ class ClienteController extends AdminController
     public function update($usuarioId, Request $request)
     {
         ClienteServices::update($usuarioId, $request);
-        return redirect('admin/client/' . $usuarioId);
+        return redirect('admin/client/' . $usuarioId)->with('success', 'Cliente atualizado!');
     }
 }

@@ -19,7 +19,7 @@ class VeiculoController extends AdminController
     public function store(Request $request)
     {
         VeiculoServices::store($request);
-        return redirect('admin/vehicle');
+        return redirect('admin/vehicle')->with('success', 'Veiculo cadastrado!');
     }
 
     public function edit($veiculoId)
@@ -31,7 +31,7 @@ class VeiculoController extends AdminController
     public function update($veiculoId, Request $request)
     {
         VeiculoServices::update($veiculoId, $request);
-        return redirect('admin/vehicle/' . $veiculoId);
+        return redirect('admin/vehicle/' . $veiculoId)->with('success', 'Veiculo atualizado!');
     }
 
     public function usage($veiculoId)
@@ -50,13 +50,14 @@ class VeiculoController extends AdminController
 
     public function indexMaintenance($veiculoId)
     {
+        $veiculo = VeiculoServices::getOne($veiculoId);
         $historicos = VeiculoServices::getMaintenanceHistory($veiculoId);
-        return view('admin.veiculo.maintenance', [ 'historicos' => $historicos, 'veiculoId' => $veiculoId ]);
+        return view('admin.veiculo.maintenance', [ 'historicos' => $historicos, 'veiculoId' => $veiculoId, 'veiculo' => $veiculo ]);
     }
 
     public function storeMaintenance($veiculoId, Request $request)
     {
         VeiculoServices::setMaintenanceHistory($veiculoId, $request);
-        return redirect('admin/vehicle/' . $veiculoId . '/maintenance');
+        return redirect('admin/vehicle/' . $veiculoId . '/maintenance')->with('success', 'Registro de manutenção cadastrada!');
     }
 }

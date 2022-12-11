@@ -53,7 +53,7 @@ class LoginController extends Controller
                 break;
         }
 
-        return redirect()->intended('/');
+        return redirect()->intended('/')->with('error', 'Login ou senha inválidos!');
     }
 
     public function logout()

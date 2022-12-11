@@ -21,7 +21,7 @@ class AgenteController extends AdminController
     public function store(Request $request)
     {
         AgentServices::store($request);
-        return redirect('admin/agent');
+        return redirect('admin/agent')->with('success', 'Agente cadastrado!');
     }
 
     public function edit($usuarioId)
@@ -34,7 +34,7 @@ class AgenteController extends AdminController
     public function update($usuarioId, Request $request)
     {
         AgentServices::update($usuarioId, $request);
-        return redirect('admin/agent/' . $usuarioId);
+        return redirect('admin/agent/' . $usuarioId)->with('success', 'Agente atualizado!');
     }
 
     public function usage($usuarioId)

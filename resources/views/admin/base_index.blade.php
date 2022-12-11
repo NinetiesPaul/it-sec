@@ -15,6 +15,12 @@
 
         <div class="tab-content">
             <div class="tab-pane fade show active" id="cadastrar_form" role="tabpanel" >
+                @if(session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 @yield('form')
             </div>
 
