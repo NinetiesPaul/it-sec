@@ -67,8 +67,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/area', [ AreaController::class, 'store' ]);
     Route::get('/admin/area/{areaId}', [ AreaController::class, 'edit' ]);
     Route::put('/admin/area/{areaId}', [ AreaController::class, 'update' ]);
-    Route::get('/admin/area/{areaId}/uso', [ AreaController::class, 'usage' ]);
-    Route::post('/admin/area/{areaId}/atribuir', [ AreaController::class, 'assign' ]);
+    Route::get('/admin/area/{areaId}/usage', [ AreaController::class, 'usage' ]);
+    Route::post('/admin/area/{areaId}/assign', [ AreaController::class, 'assign' ]);
     
     Route::get('/admin/vehicle', [ VeiculoController::class, 'index' ])->name('admin.vehicle');
     Route::post('/admin/vehicle', [ VeiculoController::class, 'store' ]);
@@ -82,7 +82,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/atendimentos', [ AtendimentoController::class, 'index' ]);
     Route::get('/admin/atendimento/{atendimentoId}', [ AtendimentoController::class, 'show' ]);
     Route::get('/admin/atendimentos/contar', [ AtendimentoController::class, 'counter' ]);
-    Route::post('/email_check', [ AdminController::class, 'emailCheck' ])->name('admin');
+
+    Route::post('/email_check', [ AdminController::class, 'emailCheck' ]);
 });
 
 Route::get('/logout', [ LoginController::class, 'logout' ]);

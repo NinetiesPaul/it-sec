@@ -71,10 +71,10 @@
                         </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('admin.equipment') }}">Equipamentos</a>
-                                <!-- <a class="dropdown-item" href="{{ route('admin.area') }}">Áreas</a> -->
+                                <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
                                 <a class="dropdown-item" href="{{ route('admin.agent') }}">Agentes</a>
                                 <a class="dropdown-item" href="{{ route('admin.client') }}">Clientes</a>
-                                <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
+                                <a class="dropdown-item" href="{{ route('admin.area') }}">Áreas</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}">Sair</a>
                             </div>
