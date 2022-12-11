@@ -23,4 +23,8 @@ class VeiculoHistoricoUso extends Model
     public function vehicle() {
         return $this->hasOne(Veiculo::class, 'id', 'vehicle_id');
     }
+
+    public function agent() {
+        return $this->hasOne(Agent::class, 'id', 'agent_id');
+    }
 }

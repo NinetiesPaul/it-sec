@@ -23,4 +23,8 @@ class ArmaHistoricoUso extends Model
     public function equipment() {
         return $this->hasOne(Arma::class, 'id', 'equipment_id');
     }
+
+    public function agent() {
+        return $this->hasOne(Agent::class, 'id', 'agent_id');
+    }
 }

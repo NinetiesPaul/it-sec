@@ -45,6 +45,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function address() {
+        return $this->belongsTo(Endereco::class);
+    }
+
     public function isAdmin() {
         return $this->hasOne(Admin::class, 'user_id');
     }
