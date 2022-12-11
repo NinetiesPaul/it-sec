@@ -1,15 +1,10 @@
 <?php
 
-
 namespace App\Services;
 
-
-use App\Models\Agente;
-use App\Models\ArmaHistoricoUso;
 use App\Models\Client;
 use App\Models\Endereco;
 use App\Models\User;
-use App\Models\VeiculoHistoricoUso;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -19,18 +14,13 @@ class ClienteServices
 {
     public static function getAll()
     {
-        return User::select(['users.*','client.*','users.id as user_id', 'client.id as client_id'])
-            ->join('client', 'client.user_id', 'users.id')
-            ->orderBy('users.name', 'asc')
+        return Client::orderBy('id', 'desc')
             ->get();
     }
 
     public static function getOne($userId)
     {
-        return Client::select(['users.*','client.*','address.*', 'users.id as user_id', 'client.id as client_id', 'address.id as address_id'])
-        ->join('users', 'client.user_id', 'users.id')
-        ->join('address', 'users.address_id', 'address.id')
-        ->where('users.id', $userId)
+        return User::where('id', $userId)
         ->first();
     }
 

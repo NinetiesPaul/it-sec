@@ -1,19 +1,8 @@
 <?php
 
-
 namespace App\Services;
 
-
-use App\Models\Agente;
-use App\Models\ArmaHistoricoUso;
-use App\Models\Client;
-use App\Models\Endereco;
 use App\Models\User;
-use App\Models\VeiculoHistoricoUso;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-
 
 class UserServices
 {

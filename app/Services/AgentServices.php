@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\Agent;
 use App\Models\ArmaHistoricoUso;
@@ -17,18 +15,13 @@ class AgentServices
 {
     public static function getAll()
     {
-        return User::select(['users.*','agent.*','users.id as user_id', 'agent.id as agent_id'])
-            ->join('agent', 'agent.user_id', 'users.id')
-            ->orderBy('users.name', 'asc')
+        return Agent::orderBy('id', 'desc')
             ->get();
     }
 
     public static function getOne($userId)
     {
-        return Agent::select(['users.*','agent.*','address.*', 'users.id as user_id', 'agent.id as agent_id', 'address.id as address_id'])
-        ->join('users', 'agent.user_id', 'users.id')
-        ->join('address', 'users.address_id', 'address.id')
-        ->where('users.id', $userId)
+        return User::where('id', $userId)
         ->first();
     }
 
@@ -92,9 +85,14 @@ class AgentServices
 
     public static function usage($agenteId)
     {
-        $armas = ArmaHistoricoUso::where('agent_id', $agenteId)->orderBy('id')->get();
-        $veiculos = VeiculoHistoricoUso::where('agent_id', $agenteId)->orderBy('id')->get();
+        $armas = ArmaHistoricoUso::where('agent_id', $agenteId)
+            ->orderBy('id')
+            ->get();
 
-        return [ $armas, $veiculos ];
+        $veiculos = VeiculoHistoricoUso::where('agent_id', $agenteId)
+            ->orderBy('id')
+            ->get();
+
+        return [ $armas, $veiculos];
     }
 }

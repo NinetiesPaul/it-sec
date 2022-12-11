@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services;
-
 
 use App\Models\Arma;
 use App\Models\ArmaHistoricoUso;
@@ -50,10 +48,7 @@ class ArmaServices
 
     public static function usageHistory($armaId)
     {
-        return ArmaHistoricoUso::select(['equipment_history.*','users.name','users.id as user_id'])
-            ->join('agent', 'agent.id', 'equipment_history.agent_id')
-            ->join('users', 'users.id', 'agent.user_id')
-            ->where('equipment_id', $armaId)
+        return ArmaHistoricoUso::where('equipment_id', $armaId)
             ->orderBy('id', 'desc')
             ->paginate(5);
     }

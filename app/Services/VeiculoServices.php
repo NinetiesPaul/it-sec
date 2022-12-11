@@ -1,11 +1,7 @@
 <?php
 
-
 namespace App\Services;
 
-
-use App\Models\Arma;
-use App\Models\ArmaHistoricoUso;
 use App\Models\Veiculo;
 use App\Models\VeiculoHistoricoManutencao;
 use App\Models\VeiculoHistoricoUso;
@@ -57,10 +53,7 @@ class VeiculoServices
 
     public static function usageHistory($veiculoId)
     {
-        return VeiculoHistoricoUso::select(['vehicle_usage_history.*','users.name','users.id as user_id'])
-            ->join('agent', 'agent.id', 'vehicle_usage_history.agent_id')
-            ->join('users', 'users.id', 'agent.user_id')
-            ->where('vehicle_id', $veiculoId)
+        return VeiculoHistoricoUso::where('vehicle_id', $veiculoId)
             ->orderBy('id', 'desc')
             ->paginate(5);
     }

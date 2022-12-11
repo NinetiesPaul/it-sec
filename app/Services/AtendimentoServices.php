@@ -1,15 +1,8 @@
 <?php
 
-
 namespace App\Services;
 
-
-use App\Models\Agente;
-use App\Models\ArmaHistoricoUso;
 use App\Models\Atendimentos;
-use App\Models\Endereco;
-use App\Models\Usuario;
-use App\Models\VeiculoHistoricoUso;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
