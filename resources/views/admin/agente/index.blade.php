@@ -14,8 +14,7 @@
         <div class="form-group row justify-content-center ">
             <label for="email" class="col-form-label col-md-2 col-form-label-sm ">E-mail:</label>
             <div class="col-md-3">
-                <input type="text" name="email" id="email" class="form-control form-control-sm" aria-describedby="disponibilidade" required>
-                <small id="disponibilidade">Login em uso!</small>
+                <input type="text" name="email" id="email" class="form-control form-control-sm" required>
             </div>
         </div>
         <div class="form-group row justify-content-center ">

@@ -6,6 +6,7 @@
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="address_id" value="{{$usuario->address_id}}">
+        <input type="hidden" name="user_id" value="{{$user->user_id}}">
 
         <div class="form-group row justify-content-center ">
             <label for="name" class="col-form-label col-md-2 col-form-label-sm ">Nome:</label>
@@ -16,8 +17,7 @@
         <div class="form-group row justify-content-center ">
             <label for="email" class="col-form-label col-md-2 col-form-label-sm ">E-mail:</label>
             <div class="col-md-3">
-                <input type="text" name="email" id="email" class="form-control form-control-sm" aria-describedby="disponibilidade" value="{{$usuario->email}}"  required>
-                <small id="disponibilidade">Login em uso!</small>
+                <input type="text" name="email" id="email" class="form-control form-control-sm" value="{{$usuario->email}}" required>
             </div>
         </div>
         <div class="form-group row justify-content-center ">

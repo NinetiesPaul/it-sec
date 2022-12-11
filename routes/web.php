@@ -82,6 +82,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/atendimentos', [ AtendimentoController::class, 'index' ]);
     Route::get('/admin/atendimento/{atendimentoId}', [ AtendimentoController::class, 'show' ]);
     Route::get('/admin/atendimentos/contar', [ AtendimentoController::class, 'counter' ]);
+    Route::post('/email_check', [ AdminController::class, 'emailCheck' ])->name('admin');
 });
 
 Route::get('/logout', [ LoginController::class, 'logout' ]);
