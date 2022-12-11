@@ -2,6 +2,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta charset="UTF8">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="{{ \Illuminate\Support\Facades\URL::asset('css/navbar.css') }}" rel="stylesheet">
@@ -12,26 +13,43 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="../../../../js/jquery.mask.js"></script>
         <script>
-            function verificarLogin(val) {
+            function mailCheck(email) {
+                var page = $(location).attr('href');
+                var typeCheck = (page.includes("agent")) ? "agent" : "client";
+                var isEditing = ($("input[name='_method']").val() == "PUT") ? true : false;
+
+                var request = {
+                    email: email,
+                    type: typeCheck,
+                };
+
+                if (isEditing) {
+                    request.userId = $("input[name='user_id']").val();
+                }
+
                 $.ajax({
                     type: "POST",
-                    url: "/verificarLogin",
-                    data: { login : val, tipo : "aluno" },
+                    url: "/email_check",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: request,
                     success: function(data){
-                        data = jQuery.parseJSON(data)
-                        if (data.loginTaken === true){
-                            $("#btn").attr("disabled", true)
-                            $("#disponibilidade").slideDown("slow", function(){});
+                        emailTaken = jQuery.parseJSON(data)
+                        
+                        if (emailTaken)
+                        {
+                            $("#btn").removeClass("btn-primary").addClass("btn-danger").html("E-mail em uso!");
                         } else {
-                            $("#btn").attr("disabled", false)
-                            $("#disponibilidade").slideUp("slow", function(){});
+                            $("#btn").addClass("btn-primary").removeClass("btn-danger").html("Cadastrar").prop("disabled", false);
                         }
                     }
                 });
             }
 
             $(document).on('focusout', '#email', function(){
-                verificarLogin(this.value);
+                $("#btn").prop("disabled", true)
+                mailCheck(this.value);
             });
 
             @yield('datepicker')
