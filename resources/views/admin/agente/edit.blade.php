@@ -2,11 +2,11 @@
 
 @section('editing_form')
     <p><strong>Alteração de Agente</strong></p>
-    <form action="/admin/agent/{{$user->user_id}}" method="post" role="form" class="form-horizontal " >
+    <form action="/admin/agent/{{$user->id}}" method="post" role="form" class="form-horizontal " >
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="address_id" value="{{$user->address_id}}">
-        <input type="hidden" name="user_id" value="{{$user->user_id}}">
+        <input type="hidden" name="user_id" value="{{$user->id}}">
 
         <div class="form-group row justify-content-center ">
             <label for="name" class="col-form-label col-md-2 col-form-label-sm ">Nome:</label>
@@ -53,37 +53,37 @@
         <div class="form-group row justify-content-center ">
             <label for="street" class="col-form-label col-md-2 col-form-label-sm ">Rua:</label>
             <div class="col-md-3">
-                <input type="text" name="street" id="street" class="form-control form-control-sm" value="{{$user->street}}" >
+                <input type="text" name="street" id="street" class="form-control form-control-sm" value="{{$user->address->street}}" >
             </div>
         </div>
         <div class="form-group row justify-content-center ">
             <label for="number" class="col-form-label col-md-2 col-form-label-sm ">Número:</label>
             <div class="col-md-3">
-                <input type="text" name="number" id="number" class="form-control form-control-sm" value="{{$user->number}}" >
+                <input type="text" name="number" id="number" class="form-control form-control-sm" value="{{$user->address->number}}" >
             </div>
         </div>
         <div class="form-group row justify-content-center ">
             <label for="detail1" class="col-form-label col-md-2 col-form-label-sm ">Bairro:</label>
             <div class="col-md-3">
-                <input type="text" name="detail1" id="detail1" class="form-control form-control-sm" value="{{$user->detail1}}" >
+                <input type="text" name="detail1" id="detail1" class="form-control form-control-sm" value="{{$user->address->detail1}}" >
             </div>
         </div>
         <div class="form-group row justify-content-center ">
             <label for="zip" class="col-form-label col-md-2 col-form-label-sm ">CEP:</label>
             <div class="col-md-3">
-                <input type="text" name="zip" id="zip" class="form-control form-control-sm" value="{{$user->zip}}" >
+                <input type="text" name="zip" id="zip" class="form-control form-control-sm" value="{{$user->address->zip}}" >
             </div>
         </div>
         <div class="form-group row justify-content-center ">
             <label for="city" class="col-form-label col-md-2 col-form-label-sm ">Cidade:</label>
             <div class="col-md-3">
-                <input type="text" name="city" id="city" class="form-control form-control-sm" value="{{$user->city}}" >
+                <input type="text" name="city" id="city" class="form-control form-control-sm" value="{{$user->address->city}}" >
             </div>
         </div>
         <div class="form-group row justify-content-center ">
             <label for="detail2" class="col-form-label col-md-2 col-form-label-sm ">Complemento:</label>
             <div class="col-md-3">
-                <input type="text" name="detail2" id="detail2" class="form-control form-control-sm" value="{{$user->detail2}}">
+                <input type="text" name="detail2" id="detail2" class="form-control form-control-sm" value="{{$user->address->detail2}}">
             </div>
         </div>
         <div class="form-group row justify-content-center ">
@@ -92,7 +92,7 @@
 
                 <select name="state_id" id="state_id" class="form-control form-control-sm selectpicker" title="Selecione um estado" required>
                     @foreach($states as $state)
-                        <option value="{{$state->id}}" {{($state->id === $user->state_id) ? 'selected' : '' }}>{{$state->name}}</option>
+                        <option value="{{$state->id}}" {{($state->id === $user->address->state_id) ? 'selected' : '' }}>{{$state->name}}</option>
                     @endforeach
                 </select>
             </div>

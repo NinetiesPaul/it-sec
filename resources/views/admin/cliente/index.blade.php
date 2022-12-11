@@ -114,11 +114,11 @@
         <tbody>
         @foreach($usuarios as $usuario)
             <tr>
-                <th scope="row">{{$usuario->user_id}}</th>
-                <td>{{$usuario->name}}</td>
-                <td>{{$usuario->email}}</td>
+                <th scope="row">{{$usuario->user->id}}</th>
+                <td>{{$usuario->user->name}}</td>
+                <td>{{$usuario->user->email}}</td>
                 <td>
-                    <a href="client/{{$usuario->user_id}}">editar</a>
+                    <a href="client/{{$usuario->user->id}}">editar</a>
                 </td>
             </tr>
         @endforeach

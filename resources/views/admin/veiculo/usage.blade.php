@@ -44,7 +44,7 @@
         <tbody>
         @foreach($historicos as $historico)
             <tr>
-                <td>{{$historico->name}}</td>
+                <td>{{$historico->agent->user->name}}</td>
                 <td>{{$historico->started_on}}</td>
                 <td>{{$historico->ended_on}}</td>
             </tr>

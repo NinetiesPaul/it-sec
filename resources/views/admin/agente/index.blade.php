@@ -114,15 +114,15 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($users as $user)
+        @foreach($users as $agent)
             <tr>
-                <th scope="row">{{$user->user_id}}</th>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ \Carbon\Carbon::parse($user->admitted_on)->format('d/m/Y') }}</td>
-                <td>{{( isset($user->terminated_at)) ? \Carbon\Carbon::parse($user->terminated_at)->format('d/m/Y') : '' }}</td>
+                <th scope="row">{{$agent->user->id}}</th>
+                <td>{{ $agent->user->name }}</td>
+                <td>{{ $agent->user->email }}</td>
+                <td>{{ \Carbon\Carbon::parse($agent->admitted_in)->format('d/m/Y') }}</td>
+                <td>{{( isset($agent->terminated_at)) ? \Carbon\Carbon::parse($agent->terminated_at)->format('d/m/Y') : '' }}</td>
                 <td>
-                    <a href="agent/{{$user->user_id}}">editar</a> | <a href="agent/{{$user->agent_id}}/usage">uso</a>
+                    <a href="agent/{{$agent->user->id}}">editar</a> | <a href="agent/{{$agent->id}}/usage">uso</a>
                 </td>
             </tr>
         @endforeach
