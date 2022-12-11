@@ -4,7 +4,7 @@
         <meta charset="UTF8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="{{ \Illuminate\Support\Facades\URL::asset('css/navbar.css') }}" rel="stylesheet">
-        <link href="{{ \Illuminate\Support\Facades\URL::asset('css/login.css') }}" rel="stylesheet">
+        <link href="{{ \Illuminate\Support\Facades\URL::asset('css/index.css') }}" rel="stylesheet">
         <script src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
         <title>itSec :: Home Page</title>
     </head>
@@ -14,12 +14,12 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="PokeXchange">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        </nav>h
+        </nav>
 
         <div class="container text-center">
             <div class="jumbotron text-center">
                 <a href="atendimento" class="btn btn-light btn btn-block">Socilitar atendimento</a>
-                <a href="atendimentos" class="btn btn-light btn btn-block">Meu histórico de atendimentos</a>
+                <a href="atendimentos" class="btn btn-light btn btn-block">Histórico de atendimentos</a>
             </div>
         </div>
 

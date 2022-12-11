@@ -21,7 +21,7 @@
 
 @section('tab_one', 'Cadastrar')
 @section('form')
-    <p><strong>Atribuição de Veiculo</strong></p>
+    <p><strong>Cadastro de Manutenção de {{$veiculo->model}} {{$veiculo->year}} {{$veiculo->license}}</strong></p>
     <form action="/admin/vehicle/{{$veiculoId}}/maintenance" method="post" role="form" class="form-horizontal " >
         @csrf
         <div class="form-group row justify-content-center ">
@@ -59,9 +59,9 @@
     </form>
 @endsection
                     
-@section('tab_two', 'Atribuir')
+@section('tab_two', 'Todos')
 @section('listing')
-    <p><strong>Historico de Manutenção de Veiculo</strong></p>
+    <p><strong>Historico de Manutenção de {{$veiculo->model}} {{$veiculo->year}} {{$veiculo->license}}</strong></p>
     <table class="table">
         <thead class="thead-dark">
         <tr>
