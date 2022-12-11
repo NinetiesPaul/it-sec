@@ -45,8 +45,8 @@
         @foreach($historicos as $historico)
             <tr>
                 <td>{{$historico->agent->user->name}}</td>
-                <td>{{$historico->started_on}}</td>
-                <td>{{$historico->ended_on}}</td>
+                <td>{{ \Carbon\Carbon::parse($historico->started_on)->format('d/m/Y') }}</td>
+                <td>{{( isset($historico->ended_on)) ? \Carbon\Carbon::parse($historico->ended_on)->format('d/m/Y') : '' }}</td>
             </tr>
         @endforeach
         </tbody>
