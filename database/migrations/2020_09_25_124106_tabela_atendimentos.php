@@ -13,13 +13,14 @@ class TabelaAtendimentos extends Migration
      */
     public function up()
     {
-        Schema::create('callings', function (Blueprint $table) {
+        Schema::create('emergency_calls', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('client_id');
-            $table->dateTime('date');
             $table->string('description');
-            $table->dateTime('awnsered_on')->nullable(true);
+            $table->dateTime('created_on');
             $table->unsignedBigInteger('awnsered_by')->nullable(true);
+            $table->dateTime('awnsered_on')->nullable(true);
+            $table->string('ended_by')->nullable(true);
             $table->dateTime('ended_on')->nullable(true);
 
             $table->foreign('client_id')->references('id')->on('client');
