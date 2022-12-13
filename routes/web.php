@@ -32,13 +32,18 @@ Route::get('/', [ Controller::class, 'index' ]);
 
 Route::middleware(['auth:agent'])->group(function () {
     Route::get('/agent', [ Agent::class, 'index' ]);
+    Route::get('/ajax/calls/{agentId}', [ Agent::class, 'ajaxShowCalls' ]);
+    //Route::get('/call/{callId}', [ Agent::class, 'viewCall' ]);
 });
 
 Route::middleware(['auth:client'])->group(function () {
     Route::get('/client', [ Cliente::class, 'index' ]);
-    Route::get('/call', [ Cliente::class, 'help' ]);
+    Route::get('/call', [ Cliente::class, 'call' ]);
+    Route::post('/call/{clientId}', [ Cliente::class, 'store' ]);
+    Route::get('/call/{callId}', [ Cliente::class, 'viewCall' ]);
+
+    Route::get('/ajax/call/{callId}', [ Cliente::class, 'ajaxViewCall' ]);
     /*Route::get('/atendimentos', [ Cliente::class, 'requests' ]);
-    Route::post('/cliente/{clienteId}/atendimento', [ AtendimentoCliente::class, 'store' ]);
     Route::get('/cliente/{clienteId}/atendimento/{atendimentoId}', [ AtendimentoCliente::class, 'show' ]);*/
 });
 
@@ -78,10 +83,6 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/vehicle/{veiculoId}/assign', [ VeiculoController::class, 'assign' ]);
     Route::get('/admin/vehicle/{veiculoId}/maintenance', [ VeiculoController::class, 'indexMaintenance' ]);
     Route::post('/admin/vehicle/{veiculoId}/maintenance', [ VeiculoController::class, 'storeMaintenance' ]);
-    
-    Route::get('/admin/atendimentos', [ AtendimentoController::class, 'index' ]);
-    Route::get('/admin/atendimento/{atendimentoId}', [ AtendimentoController::class, 'show' ]);
-    Route::get('/admin/atendimentos/contar', [ AtendimentoController::class, 'counter' ]);
 
     Route::post('/email_check', [ AdminController::class, 'emailCheck' ]);
 });
