@@ -8,17 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Atendimentos extends Model
 {
-    protected $table = 'atendimentos';
+    protected $table = 'calls';
 
     protected $fillable = [
-        'cliente_id',
-        'data',
-        'descricao',
-        'respondido_por',
-        'respondido_em',
-        'finalizado_em',
-        'observacao',
+        'client_id',
+        'created_on',
+        'description',
+        'awnsered_by',
+        'awnsered_on',
+        'ended_by',
+        'ended_on',
     ];
 
     public $timestamps = false;
+
+    public function client() {
+        return $this->belongsTo(Client::class);
+    }
 }
