@@ -41,7 +41,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="{{ route('admin') }}">itSec</a>
+            <a class="navbar-brand" href="{{ route('client') }}">itSec</a>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
@@ -49,7 +49,8 @@
                             Logado como {{ Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href=" {{ route('client') }} ">Home</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}">Sair</a>
                         </div>
                     </li>
@@ -59,10 +60,9 @@
 
         <div class="container">
             <div class="jumbotron text-center">
-
                 <p><strong>Solicitação de Atendimento</strong></p>
 
-                Chamado de número <span class="atendimento_id">{{ $atendimento->id }}</span>aberto! A central recebeu o seu chamado por <i>{{ $atendimento->description }}</i><br/>
+                Chamado de número <span class="atendimento_id">{{ $atendimento->id }}</span> aberto! A central recebeu o seu chamado por <i><b>{{ $atendimento->description }}</b></i><br/>
                 <span class="agente">Aguardando resposta de um agente disponivel na sua área...</span>
 
             </div>

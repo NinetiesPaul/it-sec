@@ -18,18 +18,8 @@
                         $(".table tbody").html("")
                         
                         $.each(data, function(k, v) {
-                            $(".table tbody").html($(".table tbody").html() + "<tr><td>" + v.description + "</td></tr>")
+                            $(".table tbody").html($(".table tbody").html() + "<tr><td>Cliente</td><td>" + v.description + "</td></tr>")
                         });
-                        //console.log(data)
-                        /*data = jQuery.parseJSON(data)
-
-                        console.log(data);
-
-                        awnsered_by = "Aguardando resposta de um agente disponivel na sua área...";
-                        if (data.awnsered_by != null) {
-                            awnsered_by = data.awnsered_by;
-                        }
-                        $(".agente").text(awnsered_by);*/
 
                         setTimeout(function(){
                             atendimento();
@@ -55,11 +45,13 @@
 
         <div class="container text-center">
             <div class="jumbotron text-center">
-                Atendimentos na sua área:
+                <p><strong>Ocorrências na sua Área</strong></p>
+                
                 <table class="table">
-                    <thead>
+                    <thead class="thead-dark">
                         <tr>
-                            <th>client</th>
+                            <th>Cliente</th>
+                            <th>Descrição</th>
                         </tr>
                     </thead>
                     <tbody>

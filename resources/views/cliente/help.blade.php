@@ -29,16 +29,17 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="{{ route('admin') }}">itSec</a>
+            <a class="navbar-brand" href="{{ route('client') }}">itSec</a>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Logado como admin
+                            Logado como {{ Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href=" {{ route('client') }} ">Home</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../logout">Sair</a>
+                            <a class="dropdown-item" href=" {{ route('logout') }}">Sair</a>
                         </div>
                     </li>
                 </ul>
@@ -47,8 +48,6 @@
 
         <div class="container">
             <div class="jumbotron text-center">
-
-
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="cadastrar_agente_form" role="tabpanel" >
                         <p><strong>Solicitação de atendimento</strong></p>
@@ -69,7 +68,6 @@
                         <p><strong>Lista de Agentes</strong></p>
                     </div>
                 </div>
-
             </div>
         </div>
 

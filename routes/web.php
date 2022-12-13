@@ -31,13 +31,13 @@ Auth::routes();
 Route::get('/', [ Controller::class, 'index' ]);
 
 Route::middleware(['auth:agent'])->group(function () {
-    Route::get('/agent', [ Agent::class, 'index' ]);
+    Route::get('/agent', [ Agent::class, 'index' ])->name('agent');;
     Route::get('/ajax/calls/{agentId}', [ Agent::class, 'ajaxShowCalls' ]);
     //Route::get('/call/{callId}', [ Agent::class, 'viewCall' ]);
 });
 
 Route::middleware(['auth:client'])->group(function () {
-    Route::get('/client', [ Cliente::class, 'index' ]);
+    Route::get('/client', [ Cliente::class, 'index' ])->name('client');;
     Route::get('/call', [ Cliente::class, 'call' ]);
     Route::post('/call/{clientId}', [ Cliente::class, 'store' ]);
     Route::get('/call/{callId}', [ Cliente::class, 'viewCall' ]);
