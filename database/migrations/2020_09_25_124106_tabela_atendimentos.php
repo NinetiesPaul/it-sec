@@ -13,7 +13,7 @@ class TabelaAtendimentos extends Migration
      */
     public function up()
     {
-        Schema::create('emergency_calls', function (Blueprint $table) {
+        Schema::create('calls', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('client_id');
             $table->string('description');
