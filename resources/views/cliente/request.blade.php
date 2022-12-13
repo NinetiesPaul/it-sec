@@ -12,15 +12,17 @@
             function atendimento(val) {
                 $.ajax({
                     type: "GET",
-                    url: "/admin/atendimento/" + val,
+                    url: "/ajax/call/" + val,
                     success: function(data){
                         data = jQuery.parseJSON(data)
 
-                        respondido_por = "Aguardando resposta de um agente disponivel na sua área...";
-                        if (data.respondido_por != null) {
-                            respondido_por = data.respondido_por;
+                        console.log(data);
+
+                        awnsered_by = "Aguardando resposta de um agente disponivel na sua área...";
+                        if (data.awnsered_by != null) {
+                            awnsered_by = data.awnsered_by;
                         }
-                        $(".agente").text(respondido_por);
+                        $(".agente").text(awnsered_by);
 
                         setTimeout(function(){
                             atendimento(val);
@@ -44,14 +46,11 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Logado como admin
+                            Logado como {{ Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Gerenciamento de Armas</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Gerenciamento de Agente</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Gerenciamento de Veiculos</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../logout">Sair</a>
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="{{ route('logout') }}">Sair</a>
                         </div>
                     </li>
                 </ul>
@@ -61,10 +60,9 @@
         <div class="container">
             <div class="jumbotron text-center">
 
-                <p><strong>Atendimento</strong></p>
+                <p><strong>Solicitação de Atendimento</strong></p>
 
-                A central recebeu o seu chamado, <span class="atendimento_id">{{ $atendimento->id }}</span><br>
-                por {{ $atendimento->descricao }}<br/>
+                Chamado de número <span class="atendimento_id">{{ $atendimento->id }}</span>aberto! A central recebeu o seu chamado por <i>{{ $atendimento->description }}</i><br/>
                 <span class="agente">Aguardando resposta de um agente disponivel na sua área...</span>
 
             </div>

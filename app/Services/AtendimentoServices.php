@@ -8,19 +8,16 @@ use Illuminate\Http\Request;
 
 class AtendimentoServices
 {
-    public static function getAll()
+    public static function getAll($availableOnly = false)
     {
+        if ($availableOnly) {
+            return Atendimentos::whereNull('ended_on')->get();
+        }
         return Atendimentos::all();
     }
 
-    public static function getOne($atendimentoId, $clienteId = false)
+    public static function getOne($atendimentoId)
     {
-        if ($clienteId) {
-            return Atendimentos::where('id', $atendimentoId)
-                ->where('cliente_id', $clienteId)
-                ->first();
-        }
-
         return Atendimentos::where('id', $atendimentoId)
             ->first();
     }
@@ -30,14 +27,14 @@ class AtendimentoServices
         return Atendimentos::whereNull('finalizado_em')->count();
     }
 
-    public static function store($clienteId, Request $request)
+    public static function store($clientId, Request $request)
     {
-        $atendimento = Atendimentos::create([
-            'cliente_id' => $clienteId,
-            'data' => Carbon::now()->format('Y-m-d H:i:s'),
-            'descricao' => $request->input('descricao'),
+        $call = Atendimentos::create([
+            'client_id' => $clientId,
+            'created_on' => Carbon::now()->format('Y-m-d H:i:s'),
+            'description' => $request->input('description'),
         ]);
 
-        return $atendimento->id;
+        return $call->id;
     }
 }

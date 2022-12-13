@@ -18,8 +18,8 @@
 
         <div class="container text-center">
             <div class="jumbotron text-center">
-                <a href="atendimento" class="btn btn-light btn btn-block">Socilitar atendimento</a>
-                <a href="atendimentos" class="btn btn-light btn btn-block">Histórico de atendimentos</a>
+                <a href="call" class="btn btn-light btn btn-block">Socilitar atendimento</a>
+                <!-- <a href="atendimentos" class="btn btn-light btn btn-block">Histórico de atendimentos</a> -->
             </div>
         </div>
 

@@ -37,7 +37,7 @@
                     </a>
                 </li>
             </ul>
-        </nav>h
+        </nav>
 
         <div class="container text-center">
             <div class="jumbotron text-center">

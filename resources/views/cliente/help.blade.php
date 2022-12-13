@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="{{ \Illuminate\Support\Facades\URL::asset('css/navbar.css') }}" rel="stylesheet">
+        <link href="{{ \Illuminate\Support\Facades\URL::asset('css/css.css') }}" rel="stylesheet">
         <script src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
         <script src="../js/mobile.detect.js"></script>
         <script>
@@ -36,9 +37,6 @@
                             Logado como admin
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Gerenciamento de Armas</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Gerenciamento de Agente</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Gerenciamento de Veiculos</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../logout">Sair</a>
                         </div>
@@ -53,13 +51,13 @@
 
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="cadastrar_agente_form" role="tabpanel" >
-                        <p><strong>Cadastro de Agente</strong></p>
-                        <form action="/cliente/{{$clienteId}}/atendimento" method="post" role="form" class="form-horizontal " id="form-agente">
+                        <p><strong>Solicitação de atendimento</strong></p>
+                        <form action="/call/{{$clientId}}" method="post" role="form" class="form-horizontal " id="form-agente">
                             @csrf
                             <div class="form-group row justify-content-center ">
-                                <label for="descricao" class="col-form-label col-md-2 col-form-label-sm ">Descrição:</label>
+                                <label for="description" class="col-form-label col-md-2 col-form-label-sm ">Descrição:</label>
                                 <div class="col-md-3">
-                                    <input type="text" name="descricao" id="descricao" class="form-control form-control-sm" >
+                                    <textarea name="description" id="description" class="form-control form-control-sm" ></textarea>
                                 </div>
                             </div>
 
