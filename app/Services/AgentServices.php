@@ -73,7 +73,7 @@ class AgentServices
             $fields['password'] = Hash::make($request->input('password'));
         }
 
-        Agent::where('users_id', $usuarioId)
+        Agent::where('user_id', $usuarioId)
             ->update([ 'area_id' => $request->input('area_id') ]);
 
         User::where('users.id', $usuarioId)

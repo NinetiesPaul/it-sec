@@ -67,7 +67,7 @@ class ClienteServices
             $fields['password'] = Hash::make($request->input('password'));
         }
 
-        Client::where('users_id', $usuarioId)
+        Client::where('user_id', $usuarioId)
             ->update([ 'area_id' => $request->input('area_id') ]);
 
         User::where('users.id', $usuarioId)

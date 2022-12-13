@@ -6,9 +6,9 @@
     <form action="/admin/area" method="post" role="form" class="form-horizontal " >
         @csrf
         <div class="form-group row justify-content-center ">
-            <label for="nome" class="col-form-label col-md-2 col-form-label-sm ">Nome:</label>
+            <label for="name" class="col-form-label col-md-2 col-form-label-sm ">Nome:</label>
             <div class="col-md-3">
-                <input type="text" name="nome" id="nome" class="form-control form-control-sm" required>
+                <input type="text" name="name" id="name" class="form-control form-control-sm" required>
             </div>
         </div>
         <div class="form-group row justify-content-center ">
