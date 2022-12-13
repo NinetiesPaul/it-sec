@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Agente;
 use App\Services\AgentServices;
 use App\Services\EstadoServices;
+use App\Services\AreaServices;
 use Illuminate\Http\Request;
 
 class AgenteController extends AdminController
@@ -15,7 +16,8 @@ class AgenteController extends AdminController
     {
         $agents = AgentServices::getAll();
         $states = EstadoServices::getAll();
-        return view('admin.agente.index', [ 'users' => $agents, 'states' => $states]);
+        $areas = AreaServices::getAll();
+        return view('admin.agente.index', [ 'users' => $agents, 'states' => $states, 'areas' => $areas ]);
     }
 
     public function store(Request $request)
@@ -28,7 +30,8 @@ class AgenteController extends AdminController
     {
         $agente = AgentServices::getOne($usuarioId);
         $estados = EstadoServices::getAll();
-        return view('admin.agente.edit', [ 'user' => $agente, 'states' => $estados ]);
+        $areas = AreaServices::getAll();
+        return view('admin.agente.edit', [ 'user' => $agente, 'states' => $estados, 'areas' => $areas ]);
     }
 
     public function update($usuarioId, Request $request)

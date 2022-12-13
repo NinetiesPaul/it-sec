@@ -12,6 +12,7 @@ class Client extends Model
 
     protected $fillable = [
         'user_id',
+        'area_id'
     ];
 
     public $timestamps = false;

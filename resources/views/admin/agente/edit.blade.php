@@ -26,6 +26,17 @@
                 <input type="password" name="password" id="password" class="form-control form-control-sm" >
             </div>
         </div>
+        <div class="form-group row justify-content-center ">
+            <label for="area_id" class="col-form-label col-md-2 col-form-label-sm ">Estado:</label>
+            <div class="col-md-3">
+
+                <select name="area_id" id="area_id" class="form-control form-control-sm selectpicker" title="Selecione uma área">
+                    @foreach($areas as $area)
+                        <option value="{{$area->id}}" {{($area->id === $user->isAgent->area_id) ? 'selected' : '' }} >{{$area->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
 
         <hr/>
 

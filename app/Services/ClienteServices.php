@@ -47,7 +47,8 @@ class ClienteServices
         ]);
 
         Client::create([
-            'user_id' => $usuario->id
+            'user_id' => $usuario->id,
+            'area_id' => $request->input('area_id')
         ]);
     }
 
@@ -65,6 +66,9 @@ class ClienteServices
         if (!empty($request->input('password'))) {
             $fields['password'] = Hash::make($request->input('password'));
         }
+
+        Client::where('users_id', $usuarioId)
+            ->update([ 'area_id' => $request->input('area_id') ]);
 
         User::where('users.id', $usuarioId)
             ->update($fields);

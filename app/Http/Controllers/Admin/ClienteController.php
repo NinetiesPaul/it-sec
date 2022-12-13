@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Services\ClienteServices;
 use App\Services\EstadoServices;
+use App\Services\AreaServices;
 use Illuminate\Http\Request;
 
 class ClienteController extends AdminController
@@ -14,7 +15,8 @@ class ClienteController extends AdminController
     {
         $clientes = ClienteServices::getAll();
         $estados = EstadoServices::getAll();
-        return view('admin.cliente.index', [ 'usuarios' => $clientes, 'estados' => $estados]);
+        $areas = AreaServices::getAll();
+        return view('admin.cliente.index', [ 'usuarios' => $clientes, 'estados' => $estados, 'areas' => $areas ]);
     }
 
     public function store(Request $request)
@@ -27,7 +29,8 @@ class ClienteController extends AdminController
     {
         $cliente = ClienteServices::getOne($usuarioId);
         $estados = EstadoServices::getAll();
-        return view('admin.cliente.edit', [ 'usuario' => $cliente, 'estados' => $estados ]);
+        $areas = AreaServices::getAll();
+        return view('admin.cliente.edit', [ 'usuario' => $cliente, 'estados' => $estados, 'areas' => $areas ]);
     }
 
     public function update($usuarioId, Request $request)

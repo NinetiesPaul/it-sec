@@ -19,8 +19,12 @@ class AgentServices
             ->get();
     }
 
-    public static function getOne($userId)
+    public static function getOne($userId = null, $byAgent = false)
     {
+        if ($byAgent) {
+            return Agent::where('id', $byAgent)
+            ->first();
+        }
         return User::where('id', $userId)
         ->first();
     }
@@ -49,7 +53,8 @@ class AgentServices
 
         Agent::create([
             'user_id' => $user->id,
-            'admitted_in' => Carbon::now()->format('Y-m-d')
+            'admitted_in' => Carbon::now()->format('Y-m-d'),
+            'area_id' => $request->input('area_id')
         ]);
     }
 
@@ -67,6 +72,9 @@ class AgentServices
         if (!empty($request->input('password'))) {
             $fields['password'] = Hash::make($request->input('password'));
         }
+
+        Agent::where('users_id', $usuarioId)
+            ->update([ 'area_id' => $request->input('area_id') ]);
 
         User::where('users.id', $usuarioId)
             ->update($fields);

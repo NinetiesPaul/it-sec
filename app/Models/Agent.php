@@ -14,6 +14,7 @@ class Agent extends Model
         'user_id',
         'admitted_in',
         'terminated_at',
+        'area_id'
     ];
 
     public $timestamps = false;
