@@ -14,11 +14,30 @@
                     url: "/ajax/calls/" + $('meta[name="agent_id"]').attr('content'),
                     success: function(data){
                         data = jQuery.parseJSON(data)
-                        
+
                         $(".table tbody").html("")
-                        
+
                         $.each(data, function(k, v) {
-                            $(".table tbody").html($(".table tbody").html() + "<tr><td>Cliente</td><td>" + v.description + "</td></tr>")
+                            var created_on = new Date(v.created_on);
+                            var formattedCreated_on = (
+                                created_on.getDate() + "/" +
+                                (created_on.getMonth() + 1) + "/" +
+                                created_on.getFullYear() + " " +
+                                created_on.getHours() + ":" +
+                                created_on.getMinutes() + ":" +
+                                created_on.getSeconds()
+                            );
+                            var address = v.address.street + ", " + v.address.number;
+
+                            $(".table tbody").html($(".table tbody").html() +
+                                "<tr><td>" +
+                                v.client.user.name + "</td><td>" +
+                                address + "</td><td>" +
+                                v.description + "</td><td>" +
+                                formattedCreated_on + "</td><td>" +
+                                "(link pra assumir chamado)" + 
+                                "</td></tr>"
+                            )
                         });
 
                         setTimeout(function(){
@@ -52,6 +71,9 @@
                         <tr>
                             <th>Cliente</th>
                             <th>Descrição</th>
+                            <th>Local</th>
+                            <th>Aberto Em</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

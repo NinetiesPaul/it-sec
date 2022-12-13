@@ -40,6 +40,8 @@ class AgentController extends Controller
         $callsForAgentArea = [];
         foreach ($calls as $call) {
             if ($call->client->area_id == $agent->area_id) {
+                $call->user = $call->client->user_error;
+                $call->address = $call->client->user->address;
                 $callsForAgentArea[] = $call;
             }
         }
