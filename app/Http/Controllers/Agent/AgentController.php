@@ -29,7 +29,7 @@ class AgentController extends Controller
     public function showCall($atendimentoId)
     {
         $atendimento = AtendimentoServices::getOne($atendimentoId);
-        return view('cliente.request', [ 'atendimento' => $atendimento ]);
+        return view('agent.request', [ 'atendimento' => $atendimento ]);
     }
 
     public function ajaxShowCalls($agent_id)
@@ -40,12 +40,17 @@ class AgentController extends Controller
         $callsForAgentArea = [];
         foreach ($calls as $call) {
             if ($call->client->area_id == $agent->area_id) {
-                $call->user = $call->client->user_error;
                 $call->address = $call->client->user->address;
                 $callsForAgentArea[] = $call;
             }
         }
 
         echo json_encode($callsForAgentArea);
+    }
+
+    public function ajaxTakeCall(Request $request)
+    {
+        AtendimentoServices::assignCall($request);
+        return [$request->callId, $request->agentId];
     }
 }

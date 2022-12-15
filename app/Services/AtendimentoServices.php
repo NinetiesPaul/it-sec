@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 
 class AtendimentoServices
 {
-    public static function getAll($availableOnly = false)
+    public static function getAll($availableOnly = false, $forClient = false)
     {
         if ($availableOnly) {
             return Atendimentos::whereNull('ended_on')->get();
+        }
+        if($forClient) {
+            return Atendimentos::where('client_id', $forClient)->get();
         }
         return Atendimentos::all();
     }
@@ -36,5 +39,14 @@ class AtendimentoServices
         ]);
 
         return $call->id;
+    }
+
+    public static function assignCall(Request $request)
+    {
+        Atendimentos::where('id', $request->input('callId'))
+        ->update([
+            'awnsered_on' => Carbon::now()->format('Y-m-d H:i:s'),
+            'awnsered_by' => $request->input('agentId')
+        ]);
     }
 }

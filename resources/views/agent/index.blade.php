@@ -2,12 +2,13 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta charset="UTF8">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="agent_id" content="{{ $agent->isAgent->id }}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="{{ \Illuminate\Support\Facades\URL::asset('css/navbar.css') }}" rel="stylesheet">
-        <link href="{{ \Illuminate\Support\Facades\URL::asset('css/login.css') }}" rel="stylesheet">
         <script src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
         <script>
+            var refresh = true;
             function atendimento() {
                 $.ajax({
                     type: "GET",
@@ -29,26 +30,54 @@
                             );
                             var address = v.address.street + ", " + v.address.number;
 
+                            var btnTxt = (v.awnsered_on) ? "Detalhes" : "Assumir";
+                            var href = (v.awnsered_on) ? "agent/call/" + v.id : "#";
+
+                            var btn = "<a id=\"btn\" class=\"btn btn-primary btn-sm take-call btn_"+v.id+" \" href=" + href + " value=" + v.id + "> " + btnTxt + "</a>";
+
                             $(".table tbody").html($(".table tbody").html() +
                                 "<tr><td>" +
-                                v.client.user.name + "</td><td>" +
+                                v.client.user.email + "</td><td>" +
                                 address + "</td><td>" +
                                 v.description + "</td><td>" +
                                 formattedCreated_on + "</td><td>" +
-                                "(link pra assumir chamado)" + 
+                                btn + 
                                 "</td></tr>"
                             )
                         });
 
-                        setTimeout(function(){
-                            atendimento();
-                        }, 2500);
+                        if (refresh) {
+                            setTimeout(function(){
+                                atendimento();
+                            }, 5000);
+                        }
                     }
                 });
             }
 
+            $(document).on('click', '#btn', function(){
+                refresh = false;
+                var callId = $(this).attr("value");
+
+                var requestData = {
+                    callId: $(this).attr("value"),
+                    agentId: $('meta[name="agent_id"]').attr('content'),
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/ajax/call",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: requestData,
+                    success: function(responseData){
+                        window.location.href = "agent/call/" + callId;
+                    }
+                });
+            });
+
             $(document).ready(function(){
-                $("#cadastrar_agente_list").css('height', $("#cadastrar_agente_form").css('height'));
                 atendimento();
             });
         </script>
@@ -70,8 +99,8 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>Cliente</th>
-                            <th>Descrição</th>
                             <th>Local</th>
+                            <th>Descrição</th>
                             <th>Aberto Em</th>
                             <th></th>
                         </tr>
