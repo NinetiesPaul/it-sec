@@ -25,4 +25,12 @@ class Atendimentos extends Model
     public function client() {
         return $this->belongsTo(Client::class);
     }
+
+    public function awnseredBy() {
+        return $this->belongsTo(Agent::class, 'awnsered_by');
+    }
+
+    public function endedBy() {
+        return $this->belongsTo(Agent::class, 'ended_by');
+    }
 }
