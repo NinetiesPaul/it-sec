@@ -31,16 +31,18 @@ Auth::routes();
 Route::get('/', [ Controller::class, 'index' ]);
 
 Route::middleware(['auth:agent'])->group(function () {
-    Route::get('/agent', [ Agent::class, 'index' ])->name('agent');;
+    Route::get('/agent', [ Agent::class, 'index' ])->name('agent');
+    Route::get('/agent/call/{callId}', [ Agent::class, 'showCall' ]);
     Route::get('/ajax/calls/{agentId}', [ Agent::class, 'ajaxShowCalls' ]);
-    //Route::get('/call/{callId}', [ Agent::class, 'viewCall' ]);
+    Route::post('/ajax/call', [ Agent::class, 'ajaxTakeCall' ]);
 });
 
 Route::middleware(['auth:client'])->group(function () {
-    Route::get('/client', [ Cliente::class, 'index' ])->name('client');;
+    Route::get('/client', [ Cliente::class, 'index' ])->name('client');
     Route::get('/call', [ Cliente::class, 'call' ]);
+    Route::get('/calls', [ Cliente::class, 'calls' ]);
     Route::post('/call/{clientId}', [ Cliente::class, 'store' ]);
-    Route::get('/call/{callId}', [ Cliente::class, 'viewCall' ]);
+    Route::get('/call/{callId}', [ Cliente::class, 'viewCall' ])->name('call');
 
     Route::get('/ajax/call/{callId}', [ Cliente::class, 'ajaxViewCall' ]);
     /*Route::get('/atendimentos', [ Cliente::class, 'requests' ]);
