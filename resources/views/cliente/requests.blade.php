@@ -6,34 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="{{ \Illuminate\Support\Facades\URL::asset('css/navbar.css') }}" rel="stylesheet">
         <script src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
-        <script src="../../../../js/mobile.detect.js"></script>
         <script>
-
-            function atendimento(val) {
-                $.ajax({
-                    type: "GET",
-                    url: "/ajax/call/" + val,
-                    success: function(data){
-                        data = jQuery.parseJSON(data)
-
-                        awnsered_by = "Aguardando resposta de um agente disponivel na sua área...";
-                        if (data.awnsered_on != null) {
-                            awnsered_by = "Agent";
-                        }
-                        $(".agente").text(awnsered_by);
-
-                        setTimeout(function(){
-                            atendimento(val);
-                        }, 2000);
-                    }
-                });
-            }
-
-            $(document).ready(function(){
-                $("#cadastrar_agente_list").css('height', $("#cadastrar_agente_form").css('height'));
-                atendimento($(".atendimento_id").text());
-            });
-
         </script>
         <title>itSec :: Home Page</title>
     </head>
@@ -58,10 +31,34 @@
 
         <div class="container">
             <div class="jumbotron text-center">
-                <p><strong>Solicitação de Atendimento</strong></p>
+                <p><strong>Histórico de chamados</strong></p>
 
-                Chamado de número <span class="atendimento_id">{{ $atendimento->id }}</span> aberto! A central recebeu o seu chamado por <i><b>{{ $atendimento->description }}</b></i><br/>
-                <span class="agente">Aguardando resposta de um agente disponivel na sua área...</span>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Aberto Em</th>
+                            <th>Respondido Em</th>
+                            <th>Respondido Por</th>
+                            <th>Finalizado Em</th>
+                            <th>Finalizado Por</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($dispatches as $dispatch)
+                            <tr>
+                                <td>{{ $dispatch->description }}</td>
+                                <td>{{ \Carbon\Carbon::parse($dispatch->created_on)->format('d/m/Y h:i:s A') }}</td>
+                                <td>{{ ($dispatch->awnsered_on) ? \Carbon\Carbon::parse($dispatch->awnsered_on)->format('d/m/Y h:i:s A') : '' }}</td>
+                                <td>{{ ($dispatch->awnsered_by) ? $dispatch->awnseredBy->user->name : '' }}</td>
+                                <td>{{ ($dispatch->ended_on) ? \Carbon\Carbon::parse($dispatch->ended_on)->format('d/m/Y h:i:s A') : '' }}</td>
+                                <td>{{ ($dispatch->ended_by) ? $dispatch->awnseredBy->user->name : '' }}</td>
+                                <td><a class="btn btn-primary btn-sm" href="{{ route('call', (int) $dispatch->id ) }}">Detalhes</a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
             </div>
         </div>

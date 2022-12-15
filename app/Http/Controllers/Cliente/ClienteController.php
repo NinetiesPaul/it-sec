@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Cliente;
 
 
 use App\Http\Controllers\Controller;
-use App\Services\AtendimentoServices;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Services\AtendimentoServices;
 
 class ClienteController extends Controller
 {
@@ -29,6 +29,13 @@ class ClienteController extends Controller
     {
         $user = Auth::user();
         return view('cliente.help', [ 'clientId' => $user->isClient->id ]);
+    }
+
+    public function calls()
+    {
+        $user = Auth::user();
+        $dispatches = AtendimentoServices::getAll(false, $user->isClient->id);
+        return view('cliente.requests', [ 'dispatches' => $dispatches ]);
     }
 
     public function store($clientId, Request $request)
