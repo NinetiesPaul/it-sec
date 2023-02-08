@@ -19,70 +19,70 @@
     }
 @endsection
 
-@section('tab_one', 'Cadastrar')
+@section('tab_one', 'Create')
 @section('form')
-    <p><strong>Cadastro de Manutenção de {{$veiculo->model}} {{$veiculo->year}} {{$veiculo->license}}</strong></p>
-    <form action="/admin/vehicle/{{$veiculoId}}/maintenance" method="post" role="form" class="form-horizontal " >
+    <p><strong>Register maintenance for <i>{{$vehicle->model}} {{$vehicle->year}} {{$vehicle->license}}</i></strong></p>
+    <form action="/admin/vehicle/{{$vehicleId}}/maintenance" method="post" role="form" class="form-horizontal " >
         @csrf
         <div class="form-group row justify-content-center ">
-            <label for="started_on" class="col-form-label col-md-2 col-form-label-sm ">Data de Inicio:</label>
+            <label for="started_on" class="col-form-label col-md-2 col-form-label-sm ">Started on:</label>
             <div class="col-md-3">
                 <input type="text" name="started_on" id="started_on" class="form-control form-control-sm" >
             </div>
         </div>
         <div class="form-group row justify-content-center ">
-            <label for="ended_on" class="col-form-label col-md-2 col-form-label-sm ">Data de Fim:</label>
+            <label for="ended_on" class="col-form-label col-md-2 col-form-label-sm ">Ended on:</label>
             <div class="col-md-3">
                 <input type="text" name="ended_on" id="ended_on" class="form-control form-control-sm" >
             </div>
         </div>
         <div class="form-group row justify-content-center ">
-            <label for="location" class="col-form-label col-md-2 col-form-label-sm ">Local:</label>
+            <label for="location" class="col-form-label col-md-2 col-form-label-sm ">Location:</label>
             <div class="col-md-3">
                 <input type="text" name="location" id="location" class="form-control form-control-sm" >
             </div>
         </div>
         <div class="form-group row justify-content-center ">
-            <label for="cost" class="col-form-label col-md-2 col-form-label-sm ">Valor:</label>
+            <label for="cost" class="col-form-label col-md-2 col-form-label-sm ">Cost:</label>
             <div class="col-md-3">
                 <input type="text" name="cost" id="cost" class="form-control form-control-sm" >
             </div>
         </div>
         <div class="form-group row justify-content-center ">
-            <label for="description" class="col-form-label col-md-2 col-form-label-sm ">Descrição:</label>
+            <label for="description" class="col-form-label col-md-2 col-form-label-sm ">Description:</label>
             <div class="col-md-3">
                 <input type="text" name="description" id="description" class="form-control form-control-sm" >
             </div>
         </div>
 
-        <button type="submit" id="btn" class="btn btn-primary btn-sm"><span class='glyphicon glyphicon-plus'></span> Cadastrar</button>
+        <button type="submit" id="btn" class="btn btn-primary btn-sm"><span class='glyphicon glyphicon-plus'></span> Create</button>
     </form>
 @endsection
                     
-@section('tab_two', 'Todos')
+@section('tab_two', 'List')
 @section('listing')
-    <p><strong>Historico de Manutenção de {{$veiculo->model}} {{$veiculo->year}} {{$veiculo->license}}</strong></p>
+    <p><strong>Maintenance history of <i>{{$vehicle->model}} {{$vehicle->year}} {{$vehicle->license}} </i></strong></p>
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Data de Inicio</th>
-            <th scope="col">Data de Fim</th>
-            <th scope="col">Local</th>
-            <th scope="col">Valor</th>
-            <th scope="col">Descrição</th>
+            <th scope="col">Started on</th>
+            <th scope="col">Ended on</th>
+            <th scope="col">Location</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Description</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($historicos as $historico)
+        @foreach($histories as $history)
             <tr>
-                <td>{{$historico->started_on}}</td>
-                <td>{{$historico->ended_on}}</td>
-                <td>{{$historico->location}}</td>
-                <td>R$ {{number_format($historico->cost, 2, ",", ".")}}</td>
-                <td>{{$historico->description}}</td>
+                <td>{{$history->started_on}}</td>
+                <td>{{$history->ended_on}}</td>
+                <td>{{$history->location}}</td>
+                <td>R$ {{number_format($history->cost, 2, ",", ".")}}</td>
+                <td>{{$history->description}}</td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    {{ $historicos->links('pagination::bootstrap-4') }}
+    {{ $histories->links('pagination::bootstrap-4') }}
 @endsection

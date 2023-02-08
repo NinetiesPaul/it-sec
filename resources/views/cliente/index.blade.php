@@ -15,11 +15,11 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Logado como {{ Illuminate\Support\Facades\Auth::user()->name }}
+                            Welcome, {{ Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <!-- <div class="dropdown-divider"></div> -->
-                            <a class="dropdown-item" href=" {{ route('logout') }}">Sair</a>
+                            <a class="dropdown-item" href=" {{ route('logout') }}">Exit</a>
                         </div>
                     </li>
                 </ul>
@@ -28,8 +28,8 @@
 
         <div class="container text-center">
             <div class="jumbotron text-center">
-                <a href="call" class="btn btn-light btn btn-block">Solicitar atendimento</a>
-                <a href="calls" class="btn btn-light btn btn-block">Histórico de atendimentos</a>
+                <a href="call" class="btn btn-light btn btn-block">Create call</a>
+                <a href="calls" class="btn btn-light btn btn-block">Call history</a>
             </div>
         </div>
 

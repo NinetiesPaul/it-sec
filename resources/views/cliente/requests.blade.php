@@ -17,12 +17,12 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Logado como {{ Illuminate\Support\Facades\Auth::user()->name }}
+                            Welcome, {{ Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href=" {{ route('client') }} ">Home</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}">Sair</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}">Exit</a>
                         </div>
                     </li>
                 </ul>
@@ -31,17 +31,17 @@
 
         <div class="container">
             <div class="jumbotron text-center">
-                <p><strong>Histórico de chamados</strong></p>
+                <p><strong>Client history</strong></p>
 
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Descrição</th>
-                            <th>Aberto Em</th>
-                            <th>Respondido Em</th>
-                            <th>Respondido Por</th>
-                            <th>Finalizado Em</th>
-                            <th>Finalizado Por</th>
+                            <th>Description</th>
+                            <th>Opened On</th>
+                            <th>Answered on</th>
+                            <th>Answered by</th>
+                            <th>Ended on</th>
+                            <th>Ended by</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -54,7 +54,7 @@
                                 <td>{{ ($dispatch->awnsered_by) ? $dispatch->awnseredBy->user->name : '' }}</td>
                                 <td>{{ ($dispatch->ended_on) ? \Carbon\Carbon::parse($dispatch->ended_on)->format('d/m/Y h:i:s A') : '' }}</td>
                                 <td>{{ ($dispatch->ended_by) ? $dispatch->awnseredBy->user->name : '' }}</td>
-                                <td><a class="btn btn-primary btn-sm" href="{{ route('call', (int) $dispatch->id ) }}">Detalhes</a></td>
+                                <td><a class="btn btn-primary btn-sm" href="{{ route('call', (int) $dispatch->id ) }}">Details</a></td>
                             </tr>
                         @endforeach
                     </tbody>

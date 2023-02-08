@@ -12,39 +12,39 @@ class EquipmentController extends AdminController
 {
     public function index()
     {
-        $armas = EquipmentServices::getAll();
-        return view('admin.arma.index', [ 'armas' => $armas ]);
+        $equipments = EquipmentServices::getAll();
+        return view('admin.arma.index', [ 'equipments' => $equipments ]);
     }
 
     public function store(Request $request)
     {
         EquipmentServices::store($request);
-        return redirect('admin/equipment')->with('success', 'Equipamento cadastrado!');
+        return redirect('admin/equipment')->with('success', 'Equipment created!');
     }
 
-    public function edit($armaId)
+    public function edit($equipmentId)
     {
-        $arma = EquipmentServices::getOne($armaId);
-        return view('admin.arma.edit', [ 'arma' => $arma ]);
+        $arma = EquipmentServices::getOne($equipmentId);
+        return view('admin.arma.edit', [ 'equipment' => $equipment ]);
     }
 
-    public function update($armaId, Request $request)
+    public function update($equipmentId, Request $request)
     {
-        EquipmentServices::update($armaId, $request);
-        return redirect('admin/equipment/' . $armaId)->with('success', 'Equipamento atualizado!');
+        EquipmentServices::update($equipmentId, $request);
+        return redirect('admin/equipment/' . $equipmentId)->with('success', 'Equipment updated!');
     }
 
-    public function usage($armaId)
+    public function usage($equipmentId)
     {
-        $arma = EquipmentServices::getOne($armaId);
-        $agentes = AgentServices::getAll();
-        $historicos = EquipmentServices::usageHistory($armaId);
-        return view('admin.arma.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'arma' => $arma ]);
+        $equipment = EquipmentServices::getOne($equipmentId);
+        $agents = AgentServices::getAll();
+        $assignments = EquipmentServices::usageHistory($equipmentId);
+        return view('admin.arma.usage', [ 'assignments' => $assignments, 'agents' => $agents, 'equipment' => $equipment ]);
     }
 
-    public function assign($armaId, Request $request)
+    public function assign($equipmentId, Request $request)
     {
-        EquipmentServices::setUsage($armaId, $request);
-        return redirect('admin/equipment/' . $armaId . '/usage');
+        EquipmentServices::setUsage($equipmentId, $request);
+        return redirect('admin/equipment/' . $equipmentId . '/usage');
     }
 }

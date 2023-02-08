@@ -12,52 +12,52 @@ class VehicleController extends AdminController
 {
     public function index()
     {
-        $veiculos = VehicleServices::getAll();
-        return view('admin.veiculo.index', [ 'veiculos' => $veiculos ]);
+        $vehicles = VehicleServices::getAll();
+        return view('admin.veiculo.index', [ 'vehicles' => $vehicles ]);
     }
 
     public function store(Request $request)
     {
         VehicleServices::store($request);
-        return redirect('admin/vehicle')->with('success', 'Veiculo cadastrado!');
+        return redirect('admin/vehicle')->with('success', 'Vehicle created!');
     }
 
-    public function edit($veiculoId)
+    public function edit($vehicleId)
     {
-        $veiculo = VehicleServices::getOne($veiculoId);
-        return view('admin.veiculo.edit', [ 'veiculo' => $veiculo ]);
+        $vehicle = VehicleServices::getOne($vehicleId);
+        return view('admin.veiculo.edit', [ 'vehicle' => $vehicle ]);
     }
 
-    public function update($veiculoId, Request $request)
+    public function update($vehicleId, Request $request)
     {
-        VehicleServices::update($veiculoId, $request);
-        return redirect('admin/vehicle/' . $veiculoId)->with('success', 'Veiculo atualizado!');
+        VehicleServices::update($vehicleId, $request);
+        return redirect('admin/vehicle/' . $vehicleId)->with('success', 'Vehicle updated!');
     }
 
-    public function usage($veiculoId)
+    public function usage($vehicleId)
     {
-        $veiculo = VehicleServices::getOne($veiculoId);
-        $agentes = AgentServices::getAll();
-        $historicos = VehicleServices::usageHistory($veiculoId);
-        return view('admin.veiculo.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'veiculo' => $veiculo ]);
+        $vehicle = VehicleServices::getOne($vehicleId);
+        $agents = AgentServices::getAll();
+        $assignments = VehicleServices::usageHistory($vehicleId);
+        return view('admin.veiculo.usage', [ 'assignments' => $assignments, 'agents' => $agents, 'vehicle' => $vehicle ]);
     }
 
-    public function assign($veiculoId, Request $request)
+    public function assign($vehicleId, Request $request)
     {
-        VehicleServices::setUsage($veiculoId, $request);
-        return redirect('admin/vehicle/' . $veiculoId . '/usage');
+        VehicleServices::setUsage($vehicleId, $request);
+        return redirect('admin/vehicle/' . $vehicleId . '/usage');
     }
 
-    public function indexMaintenance($veiculoId)
+    public function indexMaintenance($vehicleId)
     {
-        $veiculo = VehicleServices::getOne($veiculoId);
-        $historicos = VehicleServices::getMaintenanceHistory($veiculoId);
-        return view('admin.veiculo.maintenance', [ 'historicos' => $historicos, 'veiculoId' => $veiculoId, 'veiculo' => $veiculo ]);
+        $vehicle = VehicleServices::getOne($vehicleId);
+        $histories = VehicleServices::getMaintenanceHistory($vehicleId);
+        return view('admin.veiculo.maintenance', [ 'histories' => $histories, 'vehicleId' => $vehicleId, 'vehicle' => $vehicle ]);
     }
 
-    public function storeMaintenance($veiculoId, Request $request)
+    public function storeMaintenance($vehicleId, Request $request)
     {
-        VehicleServices::setMaintenanceHistory($veiculoId, $request);
-        return redirect('admin/vehicle/' . $veiculoId . '/maintenance')->with('success', 'Registro de manutenção cadastrada!');
+        VehicleServices::setMaintenanceHistory($vehicleId, $request);
+        return redirect('admin/vehicle/' . $vehicleId . '/maintenance')->with('success', 'Registro de manutenção cadastrada!');
     }
 }

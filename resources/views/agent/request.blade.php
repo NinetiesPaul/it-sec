@@ -7,42 +7,21 @@
         <link href="{{ \Illuminate\Support\Facades\URL::asset('css/navbar.css') }}" rel="stylesheet">
         <script src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
         <script src="../../../../js/mobile.detect.js"></script>
-        <script>
-
-            function atendimento(val) {
-                $.ajax({
-                    type: "GET",
-                    url: "/ajax/call/" + val,
-                    success: function(data){
-                        data = jQuery.parseJSON(data)
-
-                        awnsered_by = "Aguardando resposta de um agente disponivel na sua área...";
-                        if (data.awnsered_on != null) {
-                            awnsered_by = data.awnsered_by;
-                        }
-                        $(".agente").text(awnsered_by);
-
-                        setTimeout(function(){
-                            atendimento(val);
-                        }, 2000);
-                    }
-                });
-            }
-        
+        <script>        
         </script>
         <title>itSec :: Home Page</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="{{ route('client') }}">itSec</a>
+            <a class="navbar-brand" href="{{ route('agent') }}">itSec</a>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Logado como {{ Illuminate\Support\Facades\Auth::user()->name }}
+                            Welcome, {{ Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href=" {{ route('client') }} ">Home</a>
+                            <a class="dropdown-item" href=" {{ route('agent') }} ">Home</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}">Sair</a>
                         </div>
@@ -53,11 +32,11 @@
 
         <div class="container">
             <div class="jumbotron text-center">
-                <p><strong>Detalhes de Atendimento</strong></p>
+                <p><strong>Call details</strong></p>
 
-                Cliente: {{ $atendimento->id }} <br>
-                Motivo: {{ $atendimento->description }} <br>
-                Em: {{ $atendimento->created_on }} <br>
+                Client: {{ $call->id }} <br>
+                Description: {{ $call->description }} <br>
+                Opened on: {{ $call->created_on }} <br>
 
             </div>
         </div>

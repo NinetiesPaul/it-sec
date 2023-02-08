@@ -67,17 +67,17 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Logado como admin
+                            Welcome, admin!
                         </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.equipment') }}">Equipamentos</a>
-                                <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Veiculos</a>
-                                <a class="dropdown-item" href="{{ route('admin.agent') }}">Agentes</a>
-                                <a class="dropdown-item" href="{{ route('admin.client') }}">Clientes</a>
-                                <a class="dropdown-item" href="{{ route('admin.area') }}">Áreas</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}">Sair</a>
-                            </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('admin.agent') }}">Agents</a>
+                            <a class="dropdown-item" href="{{ route('admin.area') }}">Areas</a>
+                            <a class="dropdown-item" href="{{ route('admin.client') }}">Clients</a>
+                            <a class="dropdown-item" href="{{ route('admin.equipment') }}">Equipments</a>
+                            <a class="dropdown-item" href="{{ route('admin.vehicle') }}">Vehicles</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}">Exit</a>
+                        </div>
                     </li>
                 </ul>
             </div>

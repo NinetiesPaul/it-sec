@@ -23,30 +23,30 @@ class AgentController extends AdminController
     public function store(Request $request)
     {
         AgentServices::store($request);
-        return redirect('admin/agent')->with('success', 'Agente cadastrado!');
+        return redirect('admin/agent')->with('success', 'Agent created!');
     }
 
-    public function edit($usuarioId)
+    public function edit($userId)
     {
-        $agente = AgentServices::getOne($usuarioId);
-        $estados = StateServices::getAll();
+        $agent = AgentServices::getOne($userId);
+        $states = StateServices::getAll();
         $areas = AreaServices::getAll();
-        return view('admin.agente.edit', [ 'user' => $agente, 'states' => $estados, 'areas' => $areas ]);
+        return view('admin.agente.edit', [ 'user' => $agent, 'states' => $states, 'areas' => $areas ]);
     }
 
-    public function update($usuarioId, Request $request)
+    public function update($userId, Request $request)
     {
-        AgentServices::update($usuarioId, $request);
-        return redirect('admin/agent/' . $usuarioId)->with('success', 'Agente atualizado!');
+        AgentServices::update($userId, $request);
+        return redirect('admin/agent/' . $userId)->with('success', 'Agent updated!');
     }
 
-    public function usage($usuarioId)
+    public function usage($userId)
     {
-        $usage = AgentServices::usage($usuarioId);
+        $usage = AgentServices::usage($userId);
 
-        $armas = $usage[0];
-        $veiculos = $usage[1];
+        $equipments = $usage[0];
+        $vehicles = $usage[1];
 
-        return view('admin.agente.usage', [ 'armas' => $armas, 'veiculos' => $veiculos ]);
+        return view('admin.agente.usage', [ 'equipments' => $equipments, 'vehicles' => $vehicles ]);
     }
 }

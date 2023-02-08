@@ -44,15 +44,15 @@ class ClientController extends Controller
         return redirect('call/' . $dispatchId);
     }
 
-    public function viewCall($atendimentoId)
+    public function viewCall($callId)
     {
-        $atendimento = RequestServices::getOne($atendimentoId);
-        return view('cliente.request', [ 'atendimento' => $atendimento ]);
+        $call = RequestServices::getOne($callId);
+        return view('cliente.request', [ 'call' => $call ]);
     }
 
-    public function ajaxViewCall($atendimentoId)
+    public function ajaxViewCall($callId)
     {
-        $atendimento = RequestServices::getOne($atendimentoId);
-        echo json_encode($atendimento);
+        $call = RequestServices::getOne($callId);
+        echo json_encode($call);
     }
 }

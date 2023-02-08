@@ -17,7 +17,7 @@
         </nav>
 
         <div class="container text-center">
-            <h3>Bem-vindo</h3>
+            <h3>Welcome</h3>
 
             <div class="login">
                 <form action="{{ route('login') }}" method="post" class="form-signin">

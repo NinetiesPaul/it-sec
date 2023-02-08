@@ -13,29 +13,29 @@ class ClientController extends AdminController
 {
     public function index()
     {
-        $clientes = ClientServices::getAll();
-        $estados = StateServices::getAll();
+        $users = ClientServices::getAll();
+        $states = StateServices::getAll();
         $areas = AreaServices::getAll();
-        return view('admin.cliente.index', [ 'usuarios' => $clientes, 'estados' => $estados, 'areas' => $areas ]);
+        return view('admin.cliente.index', [ 'users' => $users, 'states' => $states, 'areas' => $areas ]);
     }
 
     public function store(Request $request)
     {
         ClientServices::store($request);
-        return redirect('admin/client')->with('success', 'Cliente cadastrado!');
+        return redirect('admin/client')->with('success', 'Client create!');
     }
 
-    public function edit($usuarioId)
+    public function edit($userId)
     {
-        $cliente = ClientServices::getOne($usuarioId);
-        $estados = StateServices::getAll();
+        $user = ClientServices::getOne($userId);
+        $states = StateServices::getAll();
         $areas = AreaServices::getAll();
-        return view('admin.cliente.edit', [ 'usuario' => $cliente, 'estados' => $estados, 'areas' => $areas ]);
+        return view('admin.cliente.edit', [ 'user' => $user, 'states' => $states, 'areas' => $areas ]);
     }
 
-    public function update($usuarioId, Request $request)
+    public function update($userId, Request $request)
     {
-        ClientServices::update($usuarioId, $request);
-        return redirect('admin/client/' . $usuarioId)->with('success', 'Cliente atualizado!');
+        ClientServices::update($userId, $request);
+        return redirect('admin/client/' . $userId)->with('success', 'Client updated!');
     }
 }

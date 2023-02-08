@@ -10,46 +10,46 @@
     }
 @endsection
 
-@section('tab_one', 'Equipamentos')
+@section('tab_one', 'Equipments')
 @section('form')
-    <p><strong>Historico de Uso de Equipamentos</strong></p>
+    <p><strong>Equipment Usage History</strong></p>
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Equipamento</th>
-            <th scope="col">Inicio de Uso</th>
-            <th scope="col">Fim de Uso</th>
+            <th scope="col">Equipment</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($armas as $arma)
+        @foreach($equipments as $equipment)
             <tr>
-                <td>{{$arma->equipment->make}} {{$arma->equipment->model}} <br><small><b>SN:<b>{{$arma->equipment->sn}}</small></td>
-                <td>{{$arma->started_on}}</td>
-                <td>{{$arma->ended_on}}</td>
+                <td>{{$equipment->equipment->make}} {{$equipment->equipment->model}} <br><small><b>SN:<b>{{$equipment->equipment->sn}}</small></td>
+                <td>{{$equipment->started_on}}</td>
+                <td>{{$equipment->ended_on}}</td>
             </tr>
         @endforeach
         </tbody>
     </table>
 @endsection
 
-@section('tab_two', 'Veiculos')
+@section('tab_two', 'Vehicles')
 @section('listing')                    
-    <p><strong>Historico de Uso de Veiculos</strong></p>
+    <p><strong>Vehicle Usage History</strong></p>
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Veiculo</th>
-            <th scope="col">Inicio de Uso</th>
-            <th scope="col">Fim de Uso</th>
+            <th scope="col">Vehicle</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($veiculos as $veiculo)
+        @foreach($vehicles as $vehicle)
             <tr>
-                <td>{{$veiculo->vehicle->make}} {{$veiculo->vehicle->model}} {{$veiculo->vehicle->year}} <br><small><b>Placa:<b>{{$veiculo->vehicle->license}}</small></td>
-                <td>{{$veiculo->started_on}}</td>
-                <td>{{$veiculo->ended_on}}</td>
+                <td>{{$vehicle->vehicle->make}} {{$vehicle->vehicle->model}} {{$vehicle->vehicle->year}} <br><small><b>Placa:<b>{{$vehicle->vehicle->license}}</small></td>
+                <td>{{$vehicle->started_on}}</td>
+                <td>{{$vehicle->ended_on}}</td>
             </tr>
         @endforeach
         </tbody>

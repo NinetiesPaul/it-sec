@@ -33,7 +33,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Atendimentos <span class="badge badge-light" id="contador"></span>
+                        Requests <span class="badge badge-light" id="contador">0</span>
                     </a>
                 </li>
             </ul>
@@ -41,11 +41,11 @@
 
         <div class="container text-center">
             <div class="jumbotron text-center">
-                <a href="admin/agent" class="btn btn-light btn btn-block">Gerenciamento de Agentes</a>
-                <a href="admin/area" class="btn btn-light btn btn-block">Gerenciamento de Área</a>
-                <a href="admin/equipment" class="btn btn-light btn btn-block">Gerenciamento de Equipamentos</a>
-                <a href="admin/client" class="btn btn-light btn btn-block">Gerenciamento de Clientes</a>
-                <a href="admin/vehicle" class="btn btn-light btn btn-block">Gerenciamento de Veículos</a>
+                <a href="admin/agent" class="btn btn-light btn btn-block">Agents</a>
+                <a href="admin/area" class="btn btn-light btn btn-block">Areas</a>
+                <a href="admin/equipment" class="btn btn-light btn btn-block">Equipments</a>
+                <a href="admin/client" class="btn btn-light btn btn-block">Clients</a>
+                <a href="admin/vehicle" class="btn btn-light btn btn-block">Vehicles</a>
             </div>
         </div>
 

@@ -9,8 +9,6 @@
         <script src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
         <script src="../js/mobile.detect.js"></script>
         <script>
-
-
             $(document).ready(function(){
                 $("#cadastrar_agente_list").css('height', $("#cadastrar_agente_form").css('height'));
                 $("#disponibilidade").hide();
@@ -23,7 +21,6 @@
                 $("#descricao").val('aguardando');
                 console.log("aguardando");
             }
-
         </script>
         <title>itSec :: Home Page</title>
     </head>
@@ -34,12 +31,12 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Logado como {{ Illuminate\Support\Facades\Auth::user()->name }}
+                            Welcome, {{ Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href=" {{ route('client') }} ">Home</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href=" {{ route('logout') }}">Sair</a>
+                            <a class="dropdown-item" href=" {{ route('logout') }}">Exit</a>
                         </div>
                     </li>
                 </ul>
@@ -50,17 +47,17 @@
             <div class="jumbotron text-center">
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="cadastrar_agente_form" role="tabpanel" >
-                        <p><strong>Solicitação de atendimento</strong></p>
+                        <p><strong>Create request</strong></p>
                         <form action="/call/{{$clientId}}" method="post" role="form" class="form-horizontal " id="form-agente">
                             @csrf
                             <div class="form-group row justify-content-center ">
-                                <label for="description" class="col-form-label col-md-2 col-form-label-sm ">Descrição:</label>
+                                <label for="description" class="col-form-label col-md-2 col-form-label-sm ">Description:</label>
                                 <div class="col-md-3">
                                     <textarea name="description" id="description" class="form-control form-control-sm" ></textarea>
                                 </div>
                             </div>
 
-                            <button type="submit" id="btn" class="btn btn-primary btn-sm"><span class='glyphicon glyphicon-plus'></span> Solicitar</button>
+                            <button type="submit" id="btn" class="btn btn-primary btn-sm"><span class='glyphicon glyphicon-plus'></span> Create</button>
                     </form>
                     </div>
 

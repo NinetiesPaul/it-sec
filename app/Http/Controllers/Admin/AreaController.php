@@ -19,7 +19,7 @@ class AreaController extends AdminController
     public function store(Request $request)
     {
         AreaServices::store($request);
-        return redirect('admin/area')->with('success', 'Área cadastrada!');
+        return redirect('admin/area')->with('success', 'Area created!');
     }
 
     public function edit($areaId)
@@ -31,15 +31,15 @@ class AreaController extends AdminController
     public function update($areaId, Request $request)
     {
         AreaServices::update($areaId, $request);
-        return redirect('admin/area/' . $areaId)->with('success', 'Área atualizada!');
+        return redirect('admin/area/' . $areaId)->with('success', 'Area updated!');
     }
 
     public function usage($areaId)
     {
         $area = AreaServices::getOne($areaId);
-        $agentes = AgentServices::getAll();
-        $historicos = AreaServices::usageHistory($areaId);
-        return view('admin.area.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'area' => $area ]);
+        $agents = AgentServices::getAll();
+        $assignments = AreaServices::usageHistory($areaId);
+        return view('admin.area.usage', [ 'assignments' => $assignments, 'agents' => $agents, 'area' => $area ]);
     }
 
     public function assign($areaId, Request $request)

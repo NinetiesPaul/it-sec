@@ -16,11 +16,11 @@
                     success: function(data){
                         data = jQuery.parseJSON(data)
 
-                        awnsered_by = "Aguardando resposta de um agente disponivel na sua área...";
+                        awnsered_by = "Awaiting awnser by one of our agents...";
                         if (data.awnsered_on != null) {
-                            awnsered_by = "Agent";
+                            awnsered_by = "Agent <b>Agent</b> awnsered your call! Wait for him/her to arrive.";
                         }
-                        $(".agente").text(awnsered_by);
+                        $(".agente").html(awnsered_by);
 
                         setTimeout(function(){
                             atendimento(val);
@@ -44,12 +44,12 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Logado como {{ Illuminate\Support\Facades\Auth::user()->name }}
+                            Welcome, {{ Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href=" {{ route('client') }} ">Home</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}">Sair</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}">Exit</a>
                         </div>
                     </li>
                 </ul>
@@ -58,10 +58,10 @@
 
         <div class="container">
             <div class="jumbotron text-center">
-                <p><strong>Solicitação de Atendimento</strong></p>
+                <p><strong>Call request</strong></p>
 
-                Chamado de número <span class="atendimento_id">{{ $atendimento->id }}</span> aberto! A central recebeu o seu chamado por <i><b>{{ $atendimento->description }}</b></i><br/>
-                <span class="agente">Aguardando resposta de um agente disponivel na sua área...</span>
+                Request #<span class="atendimento_id">{{ $call->id }}</span> opened! We received your call for <i><b>{{ $call->description }}</b></i><br/><br/>
+                <span class="agente"></span>
 
             </div>
         </div>

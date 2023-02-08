@@ -30,10 +30,10 @@
                             );
                             var address = v.address.street + ", " + v.address.number;
 
-                            var btnTxt = (v.awnsered_on) ? "Detalhes" : "Assumir";
+                            var btnTxt = (v.awnsered_on) ? "Details" : "Take call";
                             var href = (v.awnsered_on) ? "agent/call/" + v.id : "#";
 
-                            var btn = "<a id=\"btn\" class=\"btn btn-primary btn-sm take-call btn_"+v.id+" \" href=" + href + " value=" + v.id + "> " + btnTxt + "</a>";
+                            var btn = "<a id=\"btn\" class=\"btn btn-primary btn-sm take-call btn_"+v.id+" \" href=" + href + " value=" + v.id + ">" + btnTxt + "</a>";
 
                             $(".table tbody").html($(".table tbody").html() +
                                 "<tr><td>" +
@@ -85,23 +85,33 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="#">itSec</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="PokeXchange">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a class="navbar-brand" href="{{ route('agent') }}" >itSec</a>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Welcome, {{ Illuminate\Support\Facades\Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <a class="dropdown-item" href="{{ route('logout') }}">Exit</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </nav>
 
         <div class="container text-center">
             <div class="jumbotron text-center">
-                <p><strong>Ocorrências na sua Área</strong></p>
+                <p><strong>Requests In Your Area</strong></p>
                 
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Cliente</th>
-                            <th>Local</th>
-                            <th>Descrição</th>
-                            <th>Aberto Em</th>
+                            <th>Client</th>
+                            <th>Where</th>
+                            <th>Description</th>
+                            <th>Opened on</th>
                             <th></th>
                         </tr>
                     </thead>

@@ -26,10 +26,10 @@ class AgentController extends Controller
         return view('agent.index', [ 'agent' => $user ]);
     }
 
-    public function showCall($atendimentoId)
+    public function showCall($callId)
     {
-        $atendimento = RequestServices::getOne($atendimentoId);
-        return view('agent.request', [ 'atendimento' => $atendimento ]);
+        $call = RequestServices::getOne($callId);
+        return view('agent.request', [ 'call' => $call ]);
     }
 
     public function ajaxShowCalls($agent_id)
