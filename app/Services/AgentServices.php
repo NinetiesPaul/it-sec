@@ -3,10 +3,10 @@
 namespace App\Services;
 
 use App\Models\Agent;
-use App\Models\ArmaHistoricoUso;
-use App\Models\Endereco;
+use App\Models\EquipmentUsageHistory;
+use App\Models\Address;
 use App\Models\User;
-use App\Models\VeiculoHistoricoUso;
+use App\Models\VehicleUsageHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +31,7 @@ class AgentServices
 
     public static function store(Request $request)
     {
-        $address = Endereco::create([
+        $address = Address::create([
             'street' => $request->input('street'),
             'number' => (int) $request->input('number'),
             'detail1' => $request->input('detail1'),
@@ -79,7 +79,7 @@ class AgentServices
         User::where('users.id', $usuarioId)
             ->update($fields);
 
-        Endereco::where('id', $request->address_id)
+        Address::where('id', $request->address_id)
             ->update([
                 'street' => $request->input('street'),
                 'number' => (int) $request->input('number'),
@@ -93,11 +93,11 @@ class AgentServices
 
     public static function usage($agenteId)
     {
-        $armas = ArmaHistoricoUso::where('agent_id', $agenteId)
+        $armas = EquipmentUsageHistory::where('agent_id', $agenteId)
             ->orderBy('id')
             ->get();
 
-        $veiculos = VeiculoHistoricoUso::where('agent_id', $agenteId)
+        $veiculos = VehicleUsageHistory::where('agent_id', $agenteId)
             ->orderBy('id')
             ->get();
 

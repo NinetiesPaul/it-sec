@@ -46,7 +46,7 @@ class User extends Authenticatable
     ];
 
     public function address() {
-        return $this->belongsTo(Endereco::class);
+        return $this->belongsTo(Address::class);
     }
 
     public function isAdmin() {

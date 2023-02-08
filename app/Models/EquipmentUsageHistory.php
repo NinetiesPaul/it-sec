@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ArmaHistoricoUso extends Model
+class EquipmentUsageHistory extends Model
 {
     protected $table = 'equipment_history';
 
@@ -21,7 +21,7 @@ class ArmaHistoricoUso extends Model
     public $timestamps = false;
 
     public function equipment() {
-        return $this->hasOne(Arma::class, 'id', 'equipment_id');
+        return $this->hasOne(Equipment::class, 'id', 'equipment_id');
     }
 
     public function agent() {

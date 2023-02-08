@@ -6,19 +6,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Veiculo extends Model
+class Equipment extends Model
 {
-    protected $table = 'vehicle';
+    protected $table = 'equipment';
 
     protected $fillable = [
         'type',
         'make',
         'model',
-        'year',
-        'register',
-        'color',
-        'license',
-        'is_available',
+        'sn',
+        'notes',
+        'is_available'
     ];
 
     public $timestamps = false;

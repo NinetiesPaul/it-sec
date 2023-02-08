@@ -6,16 +6,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Agente;
 use App\Services\AgentServices;
-use App\Services\EstadoServices;
+use App\Services\StateServices;
 use App\Services\AreaServices;
 use Illuminate\Http\Request;
 
-class AgenteController extends AdminController
+class AgentController extends AdminController
 {
     public function index()
     {
         $agents = AgentServices::getAll();
-        $states = EstadoServices::getAll();
+        $states = StateServices::getAll();
         $areas = AreaServices::getAll();
         return view('admin.agente.index', [ 'users' => $agents, 'states' => $states, 'areas' => $areas ]);
     }
@@ -29,7 +29,7 @@ class AgenteController extends AdminController
     public function edit($usuarioId)
     {
         $agente = AgentServices::getOne($usuarioId);
-        $estados = EstadoServices::getAll();
+        $estados = StateServices::getAll();
         $areas = AreaServices::getAll();
         return view('admin.agente.edit', [ 'user' => $agente, 'states' => $estados, 'areas' => $areas ]);
     }

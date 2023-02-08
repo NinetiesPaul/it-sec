@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Cliente;
 
 
 use App\Http\Controllers\Controller;
-use App\Services\AtendimentoServices;
+use App\Services\RequestServices;
 use Illuminate\Http\Request;
 
-class AtendimentoController extends Controller
+class RequestController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,20 +21,20 @@ class AtendimentoController extends Controller
 
     public function index()
     {
-        $atendimentos = AtendimentoServices::getAll();
+        $atendimentos = RequestServices::getAll();
         return view('admin.index');
     }
 
     public function show($clienteId, $atendimentoId)
     {
-        $atendimento = AtendimentoServices::getOne($atendimentoId, $clienteId);
+        $atendimento = RequestServices::getOne($atendimentoId, $clienteId);
         return view('cliente.request', [ 'atendimento' => $atendimento ]);
     }
 
     public function store($clienteId, Request $request)
     {
         $clienteId = 1;
-        $atendimentoId = AtendimentoServices::store($clienteId, $request);
+        $atendimentoId = RequestServices::store($clienteId, $request);
         return redirect('cliente/' . $clienteId . '/atendimento/' . $atendimentoId);
     }
 }

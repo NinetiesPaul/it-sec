@@ -4,13 +4,13 @@
 namespace App\Services;
 
 
-use App\Models\Estado;
+use App\Models\State;
 
-class EstadoServices
+class StateServices
 {
     public static function getAll()
     {
-        return Estado::all();
+        return State::all();
     }
 
 }

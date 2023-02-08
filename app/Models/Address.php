@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Endereco extends Model
+class Address extends Model
 {
     protected $table = 'address';
 

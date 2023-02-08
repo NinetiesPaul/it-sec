@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VeiculoHistoricoManutencao extends Model
+class VehicleMaintenanceHistory extends Model
 {
     protected $table = 'vehicle_maintenance_history';
 

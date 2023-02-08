@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Estado extends Model
+class State extends Model
 {
     protected $table = 'state';
 

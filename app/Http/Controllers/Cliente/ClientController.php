@@ -6,9 +6,9 @@ namespace App\Http\Controllers\Cliente;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Services\AtendimentoServices;
+use App\Services\RequestServices;
 
-class ClienteController extends Controller
+class ClientController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -34,25 +34,25 @@ class ClienteController extends Controller
     public function calls()
     {
         $user = Auth::user();
-        $dispatches = AtendimentoServices::getAll(false, $user->isClient->id);
+        $dispatches = RequestServices::getAll(false, $user->isClient->id);
         return view('cliente.requests', [ 'dispatches' => $dispatches ]);
     }
 
     public function store($clientId, Request $request)
     {
-        $dispatchId = AtendimentoServices::store($clientId, $request);
+        $dispatchId = RequestServices::store($clientId, $request);
         return redirect('call/' . $dispatchId);
     }
 
     public function viewCall($atendimentoId)
     {
-        $atendimento = AtendimentoServices::getOne($atendimentoId);
+        $atendimento = RequestServices::getOne($atendimentoId);
         return view('cliente.request', [ 'atendimento' => $atendimento ]);
     }
 
     public function ajaxViewCall($atendimentoId)
     {
-        $atendimento = AtendimentoServices::getOne($atendimentoId);
+        $atendimento = RequestServices::getOne($atendimentoId);
         echo json_encode($atendimento);
     }
 }

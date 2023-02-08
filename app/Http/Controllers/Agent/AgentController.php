@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Agent;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Services\AtendimentoServices;
+use App\Services\RequestServices;
 use App\Services\AgentServices;
 
 class AgentController extends Controller
@@ -28,14 +28,14 @@ class AgentController extends Controller
 
     public function showCall($atendimentoId)
     {
-        $atendimento = AtendimentoServices::getOne($atendimentoId);
+        $atendimento = RequestServices::getOne($atendimentoId);
         return view('agent.request', [ 'atendimento' => $atendimento ]);
     }
 
     public function ajaxShowCalls($agent_id)
     {
         $agent = AgentServices::getOne(null, $agent_id);
-        $calls = AtendimentoServices::getAll(true);
+        $calls = RequestServices::getAll(true);
 
         $callsForAgentArea = [];
         foreach ($calls as $call) {
@@ -50,7 +50,7 @@ class AgentController extends Controller
 
     public function ajaxTakeCall(Request $request)
     {
-        AtendimentoServices::assignCall($request);
+        RequestServices::assignCall($request);
         return [$request->callId, $request->agentId];
     }
 }

@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Atendimentos extends Model
+class Requests extends Model
 {
     protected $table = 'calls';
 

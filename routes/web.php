@@ -3,14 +3,12 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AgenteController;
+use App\Http\Controllers\Admin\AgentController;
 use App\Http\Controllers\Admin\AreaController;
-use App\Http\Controllers\Admin\ArmaController;
-use App\Http\Controllers\Admin\AtendimentoController;
-use App\Http\Controllers\Admin\ClienteController;
-use App\Http\Controllers\Admin\VeiculoController;
-use App\Http\Controllers\Cliente\ClienteController as Cliente;
-use App\Http\Controllers\Cliente\AtendimentoController as AtendimentoCliente;
+use App\Http\Controllers\Admin\EquipmentController;
+use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\VehicleController;
+use App\Http\Controllers\Cliente\ClientController as Client;
 use App\Http\Controllers\Agent\AgentController as Agent;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Controller;
@@ -38,37 +36,35 @@ Route::middleware(['auth:agent'])->group(function () {
 });
 
 Route::middleware(['auth:client'])->group(function () {
-    Route::get('/client', [ Cliente::class, 'index' ])->name('client');
-    Route::get('/call', [ Cliente::class, 'call' ]);
-    Route::get('/calls', [ Cliente::class, 'calls' ]);
-    Route::post('/call/{clientId}', [ Cliente::class, 'store' ]);
-    Route::get('/call/{callId}', [ Cliente::class, 'viewCall' ])->name('call');
+    Route::get('/client', [ Client::class, 'index' ])->name('client');
+    Route::get('/call', [ Client::class, 'call' ]);
+    Route::get('/calls', [ Client::class, 'calls' ]);
+    Route::post('/call/{clientId}', [ Client::class, 'store' ]);
+    Route::get('/call/{callId}', [ Client::class, 'viewCall' ])->name('call');
 
-    Route::get('/ajax/call/{callId}', [ Cliente::class, 'ajaxViewCall' ]);
-    /*Route::get('/atendimentos', [ Cliente::class, 'requests' ]);
-    Route::get('/cliente/{clienteId}/atendimento/{atendimentoId}', [ AtendimentoCliente::class, 'show' ]);*/
+    Route::get('/ajax/call/{callId}', [ Client::class, 'ajaxViewCall' ]);
 });
 
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin', [ AdminController::class, 'index' ])->name('admin');
 
-    Route::get('/admin/agent', [ AgenteController::class, 'index' ])->name('admin.agent');
-    Route::post('/admin/agent', [ AgenteController::class, 'store' ]);
-    Route::get('/admin/agent/{userId}', [ AgenteController::class, 'edit' ]);
-    Route::get('/admin/agent/{userId}/usage', [ AgenteController::class, 'usage' ]);
-    Route::put('/admin/agent/{userId}', [ AgenteController::class, 'update' ]);
+    Route::get('/admin/agent', [ AgentController::class, 'index' ])->name('admin.agent');
+    Route::post('/admin/agent', [ AgentController::class, 'store' ]);
+    Route::get('/admin/agent/{userId}', [ AgentController::class, 'edit' ]);
+    Route::get('/admin/agent/{userId}/usage', [ AgentController::class, 'usage' ]);
+    Route::put('/admin/agent/{userId}', [ AgentController::class, 'update' ]);
     
-    Route::get('/admin/client', [ ClienteController::class, 'index' ])->name('admin.client');
-    Route::post('/admin/client', [ ClienteController::class, 'store' ]);
-    Route::get('/admin/client/{userId}', [ ClienteController::class, 'edit' ]);
-    Route::put('/admin/client/{userId}', [ ClienteController::class, 'update' ]);
+    Route::get('/admin/client', [ ClientController::class, 'index' ])->name('admin.client');
+    Route::post('/admin/client', [ ClientController::class, 'store' ]);
+    Route::get('/admin/client/{userId}', [ ClientController::class, 'edit' ]);
+    Route::put('/admin/client/{userId}', [ ClientController::class, 'update' ]);
     
-    Route::get('/admin/equipment', [ ArmaController::class, 'index' ])->name('admin.equipment');
-    Route::post('/admin/equipment', [ ArmaController::class, 'store' ]);
-    Route::get('/admin/equipment/{equipmentId}', [ ArmaController::class, 'edit' ]);
-    Route::put('/admin/equipment/{equipmentId}', [ ArmaController::class, 'update' ]);
-    Route::get('/admin/equipment/{equipmentId}/usage', [ ArmaController::class, 'usage' ]);
-    Route::post('/admin/equipment/{equipmentId}/assign', [ ArmaController::class, 'assign' ]);
+    Route::get('/admin/equipment', [ EquipmentController::class, 'index' ])->name('admin.equipment');
+    Route::post('/admin/equipment', [ EquipmentController::class, 'store' ]);
+    Route::get('/admin/equipment/{equipmentId}', [ EquipmentController::class, 'edit' ]);
+    Route::put('/admin/equipment/{equipmentId}', [ EquipmentController::class, 'update' ]);
+    Route::get('/admin/equipment/{equipmentId}/usage', [ EquipmentController::class, 'usage' ]);
+    Route::post('/admin/equipment/{equipmentId}/assign', [ EquipmentController::class, 'assign' ]);
     
     Route::get('/admin/area', [ AreaController::class, 'index' ])->name('admin.area');
     Route::post('/admin/area', [ AreaController::class, 'store' ]);
@@ -77,14 +73,14 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/area/{areaId}/usage', [ AreaController::class, 'usage' ]);
     Route::post('/admin/area/{areaId}/assign', [ AreaController::class, 'assign' ]);
     
-    Route::get('/admin/vehicle', [ VeiculoController::class, 'index' ])->name('admin.vehicle');
-    Route::post('/admin/vehicle', [ VeiculoController::class, 'store' ]);
-    Route::get('/admin/vehicle/{veiculoId}', [ VeiculoController::class, 'edit' ]);
-    Route::put('/admin/vehicle/{veiculoId}', [ VeiculoController::class, 'update' ]);
-    Route::get('/admin/vehicle/{veiculoId}/usage', [ VeiculoController::class, 'usage' ]);
-    Route::post('/admin/vehicle/{veiculoId}/assign', [ VeiculoController::class, 'assign' ]);
-    Route::get('/admin/vehicle/{veiculoId}/maintenance', [ VeiculoController::class, 'indexMaintenance' ]);
-    Route::post('/admin/vehicle/{veiculoId}/maintenance', [ VeiculoController::class, 'storeMaintenance' ]);
+    Route::get('/admin/vehicle', [ VehicleController::class, 'index' ])->name('admin.vehicle');
+    Route::post('/admin/vehicle', [ VehicleController::class, 'store' ]);
+    Route::get('/admin/vehicle/{veiculoId}', [ VehicleController::class, 'edit' ]);
+    Route::put('/admin/vehicle/{veiculoId}', [ VehicleController::class, 'update' ]);
+    Route::get('/admin/vehicle/{veiculoId}/usage', [ VehicleController::class, 'usage' ]);
+    Route::post('/admin/vehicle/{veiculoId}/assign', [ VehicleController::class, 'assign' ]);
+    Route::get('/admin/vehicle/{veiculoId}/maintenance', [ VehicleController::class, 'indexMaintenance' ]);
+    Route::post('/admin/vehicle/{veiculoId}/maintenance', [ VehicleController::class, 'storeMaintenance' ]);
 
     Route::post('/email_check', [ AdminController::class, 'emailCheck' ]);
 });

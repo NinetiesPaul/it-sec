@@ -3,14 +3,14 @@
 namespace App\Services;
 
 use App\Models\Client;
-use App\Models\Endereco;
+use App\Models\Address;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 
-class ClienteServices
+class ClientServices
 {
     public static function getAll()
     {
@@ -26,7 +26,7 @@ class ClienteServices
 
     public static function store(Request $request)
     {
-        $endereco = Endereco::create([
+        $endereco = Address::create([
             'street' => $request->input('street'),
             'number' => (int) $request->input('number'),
             'detail1' => $request->input('detail1'),
@@ -73,7 +73,7 @@ class ClienteServices
         User::where('users.id', $usuarioId)
             ->update($fields);
 
-        Endereco::where('id', $request->address_id)
+        Address::where('id', $request->address_id)
             ->update([
                 'street' => $request->input('street'),
                 'number' => (int) $request->input('number'),

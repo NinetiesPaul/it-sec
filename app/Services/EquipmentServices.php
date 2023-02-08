@@ -2,21 +2,21 @@
 
 namespace App\Services;
 
-use App\Models\Arma;
-use App\Models\ArmaHistoricoUso;
+use App\Models\Equipment;
+use App\Models\EquipmentUsageHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class ArmaServices
+class EquipmentServices
 {
     public static function getAll()
     {
-        return Arma::all();
+        return Equipment::all();
     }
 
     public static function getOne($armaId)
     {
-        $arma = Arma::where('id', $armaId)
+        $arma = Equipment::where('id', $armaId)
             ->first();
 
         return $arma;
@@ -24,7 +24,7 @@ class ArmaServices
 
     public static function store(Request $request)
     {
-        Arma::create([
+        Equipment::create([
             'type' => $request->input('type'),
             'make' => $request->input('make'),
             'model' => $request->input('model'),
@@ -36,7 +36,7 @@ class ArmaServices
 
     public static function update($armaId, Request $request)
     {
-        Arma::where('id', $armaId)
+        Equipment::where('id', $armaId)
             ->update([
                 'type' => $request->input('type'),
                 'make' => $request->input('make'),
@@ -48,14 +48,14 @@ class ArmaServices
 
     public static function usageHistory($armaId)
     {
-        return ArmaHistoricoUso::where('equipment_id', $armaId)
+        return EquipmentUsageHistory::where('equipment_id', $armaId)
             ->orderBy('id', 'desc')
             ->paginate(5);
     }
 
     public static function setUsage($armaId, Request $request)
     {
-        $armaHistorico = ArmaHistoricoUso::where('equipment_id', $armaId)
+        $armaHistorico = EquipmentUsageHistory::where('equipment_id', $armaId)
             ->whereNull('ended_on')
             ->first();
 
@@ -68,13 +68,13 @@ class ArmaServices
             $armaHistorico->save();
         }
 
-        ArmaHistoricoUso::create([
+        EquipmentUsageHistory::create([
             'equipment_id' => $armaId,
             'agent_id' => $request->input('agente_id'),
             'started_on' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
-        Arma::where('id', $armaId)
+        Equipment::where('id', $armaId)
             ->update([
                 'is_available' => 0,
             ]);

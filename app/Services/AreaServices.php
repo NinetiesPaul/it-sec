@@ -5,7 +5,7 @@ namespace App\Services;
 
 
 use App\Models\Area;
-use App\Models\AreaAgente;
+use App\Models\AreaByAgent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -41,14 +41,14 @@ class AreaServices
 
     public static function usageHistory($areaId)
     {
-        return AreaAgente::where('area_id', $areaId)
+        return AreaByAgent::where('area_id', $areaId)
             ->orderBy('id', 'desc')
             ->paginate(5);
     }
 
     public static function setUsage($areaId, Request $request)
     {
-        $areaHistorico = AreaAgente::where('area_id', $areaId)
+        $areaHistorico = AreaByAgent::where('area_id', $areaId)
             ->whereNull('ended_on')
             ->first();
 
@@ -61,7 +61,7 @@ class AreaServices
             $areaHistorico->save();
         }
 
-        AreaAgente::create([
+        AreaByAgent::create([
             'area_id' => $areaId,
             'agent_id' => $request->input('agent_id'),
             'started_on' => Carbon::now()->format('Y-m-d')
