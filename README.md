@@ -1,7 +1,8 @@
 # IT Sec
-IT Sec a simple web application for managing security detail asssets
+IT Sec is a simple web application for managing security detail asssets.
 
-Project running on PHP's Laravel, MySQL and Apache
+Project running on Docker, PHP's Laravel, MySQL and Apache.
+
 ### Configuring the project:  
 - Have Docker installed   
 - Run ```docker-compose build```  
