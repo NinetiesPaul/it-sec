@@ -5,7 +5,7 @@ namespace App\Services;
 
 
 use App\Models\Area;
-use App\Models\AreaAgente;
+use App\Models\AreaByAgent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,8 @@ class AreaServices
     public static function store(Request $request)
     {
         Area::create([
-            'descricao' => $request->input('descricao')
+            'name' => $request->input('name'),
+            'description' => $request->input('description')
         ]);
     }
 
@@ -33,28 +34,26 @@ class AreaServices
     {
         Area::where('id', $areaId)
             ->update([
-                'descricao' => $request->input('descricao')
+                'name' => $request->input('name'),
+                'description' => $request->input('description')
             ]);
     }
 
     public static function usageHistory($areaId)
     {
-        return AreaAgente::select(['area_agente.*','usuario.nome','usuario.id as usuario_id'])
-            ->join('agente', 'agente.id', 'area_agente.agente_id')
-            ->join('usuario', 'usuario.id', 'agente.usuario_id')
-            ->where('area_id', $areaId)
+        return AreaByAgent::where('area_id', $areaId)
             ->orderBy('id', 'desc')
             ->paginate(5);
     }
 
     public static function setUsage($areaId, Request $request)
     {
-        $areaHistorico = AreaAgente::where('area_id', $areaId)
-            ->whereNull('fim')
+        $areaHistorico = AreaByAgent::where('area_id', $areaId)
+            ->whereNull('ended_on')
             ->first();
 
         if ($areaHistorico) {
-            if ($areaHistorico->agente_id === (int) $request->input('agente_id')) {
+            if ($areaHistorico->agent_id === (int) $request->input('agent_id')) {
                 return null;
             }
 
@@ -62,10 +61,10 @@ class AreaServices
             $areaHistorico->save();
         }
 
-        AreaAgente::create([
+        AreaByAgent::create([
             'area_id' => $areaId,
-            'agente_id' => $request->input('agente_id'),
-            'inicio' => Carbon::now()->format('Y-m-d H:i:s')
+            'agent_id' => $request->input('agent_id'),
+            'started_on' => Carbon::now()->format('Y-m-d')
         ]);
     }
 }

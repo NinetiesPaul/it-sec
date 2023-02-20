@@ -13,15 +13,15 @@ class TabelaAreaAgente extends Migration
      */
     public function up()
     {
-        Schema::create('area_agente', function (Blueprint $table) {
+        Schema::create('area_by_agent', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('area_id');
-            $table->unsignedBigInteger('agente_id');
-            $table->dateTime('inicio');
-            $table->dateTime('fim')->nullable(true);
+            $table->unsignedBigInteger('agent_id');
+            $table->dateTime('started_on');
+            $table->dateTime('ended_on')->nullable(true);
 
             $table->foreign('area_id')->references('id')->on('area');
-            $table->foreign('agente_id')->references('id')->on('agente');
+            $table->foreign('agent_id')->references('id')->on('agent');
         });
     }
 

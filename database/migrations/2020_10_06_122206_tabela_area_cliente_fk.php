@@ -13,7 +13,7 @@ class TabelaAreaClienteFk extends Migration
      */
     public function up()
     {
-        Schema::table('cliente', function (Blueprint $table) {
+        Schema::table('client', function (Blueprint $table) {
             $table->unsignedBigInteger('area_id')->nullable(true);
             $table->foreign('area_id')->references('id')->on('area');
         });

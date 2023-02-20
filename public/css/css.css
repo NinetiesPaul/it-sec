@@ -9,3 +9,7 @@ strong{
 .mobile{
     display: none;
 }
+
+.table {
+    text-align: center;
+}

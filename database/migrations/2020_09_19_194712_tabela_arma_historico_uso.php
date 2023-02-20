@@ -13,15 +13,15 @@ class TabelaArmaHistoricoUso extends Migration
      */
     public function up()
     {
-        Schema::create('arma_historico_uso', function (Blueprint $table) {
+        Schema::create('equipment_history', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('arma_id');
-            $table->unsignedBigInteger('agente_id');
-            $table->dateTime('inicio_de_uso');
-            $table->dateTime('fim_de_uso')->nullable(true);
+            $table->unsignedBigInteger('equipment_id');
+            $table->unsignedBigInteger('agent_id');
+            $table->dateTime('started_on');
+            $table->dateTime('ended_on')->nullable(true);
 
-            $table->foreign('arma_id')->references('id')->on('arma');
-            $table->foreign('agente_id')->references('id')->on('agente');
+            $table->foreign('equipment_id')->references('id')->on('equipment');
+            $table->foreign('agent_id')->references('id')->on('agent');
         });
     }
 

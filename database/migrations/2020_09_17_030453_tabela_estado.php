@@ -13,10 +13,10 @@ class TabelaEstado extends Migration
      */
     public function up()
     {
-        Schema::create('estado', function (Blueprint $table) {
+        Schema::create('state', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->string('sigla');
+            $table->string('name');
+            $table->string('abbreviation');
         });
     }
 

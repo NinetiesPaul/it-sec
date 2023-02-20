@@ -4,7 +4,7 @@
         <meta charset="UTF8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="{{ \Illuminate\Support\Facades\URL::asset('css/navbar.css') }}" rel="stylesheet">
-        <link href="{{ \Illuminate\Support\Facades\URL::asset('css/login.css') }}" rel="stylesheet">
+        <link href="{{ \Illuminate\Support\Facades\URL::asset('css/index.css') }}" rel="stylesheet">
         <script src="{{ \Illuminate\Support\Facades\URL::asset('js/jquery.js') }}"></script>
         <script>
             function atendimentos() {
@@ -33,19 +33,19 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Atendimentos <span class="badge badge-light" id="contador"></span>
+                        Requests <span class="badge badge-light" id="contador">0</span>
                     </a>
                 </li>
             </ul>
-        </nav>h
+        </nav>
 
         <div class="container text-center">
             <div class="jumbotron text-center">
-                <a href="admin/agente" class="btn btn-light btn btn-block">Gerenciamento de Agentes</a>
-                <a href="admin/area" class="btn btn-light btn btn-block">Gerenciamento de Área</a>
-                <a href="admin/arma" class="btn btn-light btn btn-block">Gerenciamento de Armas</a>
-                <a href="admin/cliente" class="btn btn-light btn btn-block">Gerenciamento de Clientes</a>
-                <a href="admin/veiculo" class="btn btn-light btn btn-block">Gerenciamento de Veículos</a>
+                <a href="admin/agent" class="btn btn-light btn btn-block">Agents</a>
+                <a href="admin/area" class="btn btn-light btn btn-block">Areas</a>
+                <a href="admin/equipment" class="btn btn-light btn btn-block">Equipments</a>
+                <a href="admin/client" class="btn btn-light btn btn-block">Clients</a>
+                <a href="admin/vehicle" class="btn btn-light btn btn-block">Vehicles</a>
             </div>
         </div>
 

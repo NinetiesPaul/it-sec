@@ -13,15 +13,15 @@ class TabelaEndereco extends Migration
      */
     public function up()
     {
-        Schema::create('endereco', function (Blueprint $table) {
+        Schema::create('address', function (Blueprint $table) {
             $table->id();
-            $table->string('rua')->nullable(true);
-            $table->integer('numero')->nullable(true);
-            $table->string('bairro')->nullable(true);
-            $table->string('cep')->nullable(true);
-            $table->string('cidade')->nullable(true);
-            $table->string('complemento')->nullable(true);
-            $table->unsignedBigInteger('estado_id')->nullable(true);
+            $table->string('street')->nullable(true);
+            $table->integer('number')->nullable(true);
+            $table->string('detail1')->nullable(true);
+            $table->string('detail2')->nullable(true);
+            $table->string('zip')->nullable(true);
+            $table->string('city')->nullable(true);
+            $table->unsignedBigInteger('state_id')->nullable(true);
         });
     }
 

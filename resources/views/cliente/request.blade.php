@@ -12,15 +12,15 @@
             function atendimento(val) {
                 $.ajax({
                     type: "GET",
-                    url: "/admin/atendimento/" + val,
+                    url: "/ajax/call/" + val,
                     success: function(data){
                         data = jQuery.parseJSON(data)
 
-                        respondido_por = "Aguardando resposta de um agente disponivel na sua área...";
-                        if (data.respondido_por != null) {
-                            respondido_por = data.respondido_por;
+                        awnsered_by = "Awaiting awnser by one of our agents...";
+                        if (data.awnsered_on != null) {
+                            awnsered_by = "Agent <b>Agent</b> awnsered your call! Wait for him/her to arrive.";
                         }
-                        $(".agente").text(respondido_por);
+                        $(".agente").html(awnsered_by);
 
                         setTimeout(function(){
                             atendimento(val);
@@ -39,19 +39,17 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="{{ route('admin') }}">itSec</a>
+            <a class="navbar-brand" href="{{ route('client') }}">itSec</a>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Logado como admin
+                            Welcome, {{ Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.arma') }}">Gerenciamento de Armas</a>
-                            <a class="dropdown-item" href="{{ route('admin.agente') }}">Gerenciamento de Agente</a>
-                            <a class="dropdown-item" href="{{ route('admin.veiculo') }}">Gerenciamento de Veiculos</a>
+                            <a class="dropdown-item" href=" {{ route('client') }} ">Home</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../logout">Sair</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}">Exit</a>
                         </div>
                     </li>
                 </ul>
@@ -60,12 +58,10 @@
 
         <div class="container">
             <div class="jumbotron text-center">
+                <p><strong>Call request</strong></p>
 
-                <p><strong>Atendimento</strong></p>
-
-                A central recebeu o seu chamado, <span class="atendimento_id">{{ $atendimento->id }}</span><br>
-                por {{ $atendimento->descricao }}<br/>
-                <span class="agente">Aguardando resposta de um agente disponivel na sua área...</span>
+                Request #<span class="atendimento_id">{{ $call->id }}</span> opened! We received your call for <i><b>{{ $call->description }}</b></i><br/><br/>
+                <span class="agente"></span>
 
             </div>
         </div>

@@ -13,11 +13,11 @@ class TabelaAgente extends Migration
      */
     public function up()
     {
-        Schema::create('agente', function (Blueprint $table) {
+        Schema::create('agent', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('usuario_id');
-            $table->dateTime('contratado_em');
-            $table->dateTime('demitido_em')->nullable(true);
+            $table->unsignedBigInteger('user_id');
+            $table->dateTime('admitted_in');
+            $table->dateTime('terminated_at')->nullable(true);
         });
     }
 

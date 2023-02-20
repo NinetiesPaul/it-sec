@@ -13,20 +13,20 @@ class MainForeignKeys extends Migration
      */
     public function up()
     {
-        Schema::table('usuario', function (Blueprint $table) {
-            $table->foreign('endereco_id')->references('id')->on('endereco');
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('address_id')->references('id')->on('address');
         });
 
-        Schema::table('endereco', function (Blueprint $table) {
-            $table->foreign('estado_id')->references('id')->on('estado');
+        Schema::table('address', function (Blueprint $table) {
+            $table->foreign('state_id')->references('id')->on('state');
         });
 
-        Schema::table('agente', function (Blueprint $table) {
-            $table->foreign('usuario_id')->references('id')->on('usuario');
+        Schema::table('agent', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::table('cliente', function (Blueprint $table) {
-            $table->foreign('usuario_id')->references('id')->on('usuario');
+        Schema::table('client', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

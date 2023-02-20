@@ -4,22 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
-use App\Services\AgenteServices;
+use App\Services\AgentServices;
 use App\Services\AreaServices;
 use Illuminate\Http\Request;
 
-class AreaController extends Controller
+class AreaController extends AdminController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function index()
     {
         $areas = AreaServices::getAll();
@@ -29,7 +19,7 @@ class AreaController extends Controller
     public function store(Request $request)
     {
         AreaServices::store($request);
-        return redirect('admin/area');
+        return redirect('admin/area')->with('success', 'Area created!');
     }
 
     public function edit($areaId)
@@ -41,19 +31,20 @@ class AreaController extends Controller
     public function update($areaId, Request $request)
     {
         AreaServices::update($areaId, $request);
-        return redirect('admin/area/' . $areaId);
+        return redirect('admin/area/' . $areaId)->with('success', 'Area updated!');
     }
 
     public function usage($areaId)
     {
-        $agentes = AgenteServices::getAll();
-        $historicos = AreaServices::usageHistory($areaId);
-        return view('admin.area.usage', [ 'historicos' => $historicos, 'agentes' => $agentes, 'areaId' => $areaId ]);
+        $area = AreaServices::getOne($areaId);
+        $agents = AgentServices::getAll();
+        $assignments = AreaServices::usageHistory($areaId);
+        return view('admin.area.usage', [ 'assignments' => $assignments, 'agents' => $agents, 'area' => $area ]);
     }
 
     public function assign($areaId, Request $request)
     {
         AreaServices::setUsage($areaId, $request);
-        return redirect('admin/area/' . $areaId . '/uso');
+        return redirect('admin/area/' . $areaId . '/usage');
     }
 }
