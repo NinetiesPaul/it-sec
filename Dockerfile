@@ -27,6 +27,12 @@ RUN docker-php-ext-install mysqli pdo_mysql gd
 
 RUN docker-php-ext-enable gd
 
+RUN pecl install xdebug-3.1.5
+
+RUN docker-php-ext-enable xdebug
+
+RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN chown -R www-data:www-data /var/www/html \
