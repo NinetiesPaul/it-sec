@@ -57,7 +57,7 @@ class AreaServices
                 return null;
             }
 
-            $areaHistorico->fim = Carbon::now()->format('Y-m-d H:i:s');
+            $areaHistorico->ended_on = Carbon::now()->format('Y-m-d H:i:s');
             $areaHistorico->save();
         }
 
